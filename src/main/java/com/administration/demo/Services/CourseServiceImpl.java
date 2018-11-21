@@ -16,4 +16,18 @@ public class CourseServiceImpl implements CourseService
     {
         return courseRepo.findAll();
     }
+
+    public void saveCourse()
+    {
+        Course course1 = new Course("SWC3");
+
+        Course course2 = new Course("SWD3");
+
+        Course course3 = new Course("ITO");
+
+        courseRepo.save(course1);
+        courseRepo.save(course2);
+        courseRepo.save(course3);
+
+    }
 }
