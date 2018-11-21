@@ -1,9 +1,10 @@
 package com.administration.demo.Models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Course
+public class Course implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
