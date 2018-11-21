@@ -17,9 +17,7 @@ public class CourseController
     @GetMapping
     public String courseHomepage(Model model) throws IOException
     {
-        courseService.testJson();
-
-        model.addAttribute("courses", courseService.getCourses());
+        model.addAttribute("course", courseService.testJson());
 
         return "course";
     }

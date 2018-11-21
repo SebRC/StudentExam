@@ -4,14 +4,15 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class Course implements Serializable
+public class CourseModel implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int courseID;
     private String courseNameDanish;
     private String courseNameEnglish;
-    /*private int courseSemester;
+    private int courseSemester;
+    private String courseClassCode;
     private String courseStudyProgramme;
     private String courseECTS;
     private String courseLanguage;
@@ -20,21 +21,61 @@ public class Course implements Serializable
     private int courseMaxStudents;
     private String coursePrerequisites;
     private String courseLearningOutcome;
-    //@Column(name = "courseContent")
-    //private String courseContent;
+    private String courseContent;
     private String courseLearningActivities;
-    //private String courseExamForm;
+    private String courseExamForm;
 
     //TO DO
     private int courseMandatory;
 
-    */
 
-    public Course(){}
 
-    public Course(String courseNameDanish)
+    public CourseModel(){}
+
+    public CourseModel(int courseID, String courseNameDanish, String courseNameEnglish, int courseSemester,
+                       String courseClassCode, String courseStudyProgramme, String courseECTS, String courseLanguage,
+                       int courseMinStudents, int courseExpectedStudents, int courseMaxStudents,
+                       String coursePrerequisites, String courseLearningOutcome, String courseContent,
+                       String courseLearningActivities, String courseExamForm, boolean isMandatory)
+    {
+        this.courseID = courseID;
+        this.courseNameDanish = courseNameDanish;
+        this.courseNameEnglish = courseNameEnglish;
+        this.courseSemester = courseSemester;
+        this.courseClassCode = courseClassCode;
+        this.courseStudyProgramme = courseStudyProgramme;
+        this.courseECTS = courseECTS;
+        this.courseLanguage = courseLanguage;
+        this.courseMinStudents = courseMinStudents;
+        this.courseExpectedStudents = courseExpectedStudents;
+        this.courseMaxStudents = courseMaxStudents;
+        this.coursePrerequisites = coursePrerequisites;
+        this.courseLearningOutcome = courseLearningOutcome;
+        this.courseContent = courseContent;
+        this.courseLearningActivities = courseLearningActivities;
+        this.courseExamForm = courseExamForm;
+
+        //converts a boolean to an int to store in database
+        this.courseMandatory = 0;
+        if(isMandatory)
+        {
+            this.courseMandatory = 1;
+        }
+    }
+
+    public CourseModel(String courseNameDanish)
     {
         this.courseNameDanish = courseNameDanish;
+    }
+
+    public String getCourseClassCode()
+    {
+        return courseClassCode;
+    }
+
+    public void setCourseClassCode(String courseClassCode)
+    {
+        this.courseClassCode = courseClassCode;
     }
 
     public int getCourseID()
@@ -57,7 +98,7 @@ public class Course implements Serializable
         this.courseNameDanish = courseNameDanish;
     }
 
-    /*
+
     public String getCourseNameEnglish()
     {
         return courseNameEnglish;
@@ -199,5 +240,5 @@ public class Course implements Serializable
     {
         this.courseMandatory = courseMandatory;
     }
-    */
+
 }
