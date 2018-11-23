@@ -24,36 +24,30 @@ public class CourseModel implements Serializable
     private String courseContent;
     private String courseLearningActivities;
     private String courseExamForm;
-
-    //TO DO
     private int courseMandatory;
-
 
 
     public CourseModel(){}
 
-    public CourseModel(int courseID, String courseNameDanish, String courseNameEnglish, int courseSemester,
-                       String courseClassCode, String courseStudyProgramme, String courseECTS, String courseLanguage,
-                       int courseMinStudents, int courseExpectedStudents, int courseMaxStudents,
-                       String coursePrerequisites, String courseLearningOutcome, String courseContent,
-                       String courseLearningActivities, String courseExamForm, boolean isMandatory)
+    public CourseModel(int courseID, String courseNameDanish, String courseNameEnglish, int courseSemester, String courseStudyProgramme, String courseECTS, String courseLanguage,
+                       String courseLearningOutcome, boolean isMandatory)
     {
         this.courseID = courseID;
         this.courseNameDanish = courseNameDanish;
         this.courseNameEnglish = courseNameEnglish;
         this.courseSemester = courseSemester;
-        this.courseClassCode = courseClassCode;
+        this.courseClassCode = "Default";
         this.courseStudyProgramme = courseStudyProgramme;
         this.courseECTS = courseECTS;
         this.courseLanguage = courseLanguage;
-        this.courseMinStudents = courseMinStudents;
-        this.courseExpectedStudents = courseExpectedStudents;
-        this.courseMaxStudents = courseMaxStudents;
-        this.coursePrerequisites = coursePrerequisites;
+        this.courseMinStudents = 0;
+        this.courseExpectedStudents = 0;
+        this.courseMaxStudents = 0;
+        this.coursePrerequisites = "Default";
         this.courseLearningOutcome = courseLearningOutcome;
-        this.courseContent = courseContent;
-        this.courseLearningActivities = courseLearningActivities;
-        this.courseExamForm = courseExamForm;
+        this.courseContent = "Default";
+        this.courseLearningActivities = "Default";
+        this.courseExamForm = "Default";
 
         //converts a boolean to an int to store in database
         this.courseMandatory = 0;

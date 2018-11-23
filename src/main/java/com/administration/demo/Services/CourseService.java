@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface CourseService
 {
-    List<CourseModel> getCourses();
+    List<CourseModel> getAllCoursesFromDatabase();
 }

@@ -6,8 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.io.IOException;
-
 @Controller("/course")
 public class CourseController
 {
@@ -15,12 +13,15 @@ public class CourseController
     private CourseServiceImpl courseService;
 
     @GetMapping
-    public String courseHomepage(Model model) throws IOException
+    public String courses(Model model)
     {
-        model.addAttribute("course", courseService.testJson());
+        courseService.getAllCoursesFromWebservice();
 
-        return "course";
+        model.addAttribute("courses", courseService.getAllCoursesFromDatabase());
+
+        return "Courses/course";
     }
+
 
 
 

@@ -2,7 +2,7 @@ package com.administration.demo.Models;
 
 import java.io.Serializable;
 
-public class FajsalModel implements Serializable
+public class CourseWebModel implements Serializable
 {
     private int id;
     private int semester;
@@ -15,7 +15,7 @@ public class FajsalModel implements Serializable
     private int numberOfTeachers;
     private String language;
 
-    public FajsalModel()
+    public CourseWebModel()
     {
     }
 
