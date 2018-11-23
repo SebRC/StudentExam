@@ -75,5 +75,28 @@ public class CourseServiceImpl implements CourseService
         courseRepo.saveAll(localCoursesList);
     }
 
+    public void consumeWebserviceCourses()
+    {
+        String devURL = "http://18.185.40.91/course";
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        ArrayList<CourseWebModel> courseWebModels = restTemplate.getForObject(devURL, ArrayList.class);
+
+        List<CourseModel> localCoursesList = new ArrayList<>();
+
+        for (CourseWebModel courseWebModel : courseWebModels)
+        {
+            CourseModel courseModel = new CourseModel(courseWebModel.getId(), courseWebModel.getNamedanish(), courseWebModel.getName(),
+                    courseWebModel.getSemester(), courseWebModel.getStudyprogramme(),
+                    courseWebModel.getEcts(), courseWebModel.getLanguage(), courseWebModel.getDescription(), courseWebModel.isMandatory());
+
+
+            localCoursesList.add(courseModel);
+        }
+
+        courseRepo.saveAll(localCoursesList);
+    }
+
 
 }

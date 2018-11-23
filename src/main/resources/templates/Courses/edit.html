@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Course edit</title>
 </head>
 <body>
+
+<!--
+<div>
+    <h1 th:text="${course.courseNameDanish}"></h1>
+</div>
+<div>
+    <h1 th:text="${course.courseECTS}"></h1>
+</div>
+-->
+
+
+
+
+
+
+<div th:each="course : ${courses}">
+    <h1 th:text="${course.courseNameDanish}"></h1>
+    <a href=""></a>
+
+</div>
+
 
 </body>
 </html>
