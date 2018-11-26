@@ -17,7 +17,9 @@ public class CourseController
     {
         courseService.getAllCoursesFromWebservice();
 
-        model.addAttribute("courses", courseService.getAllCoursesFromDatabase());
+        //model.addAttribute("courses", courseService.getAllCoursesFromDatabase());
+
+        model.addAttribute("courses", courseService.test());
 
         return "Courses/course";
     }
