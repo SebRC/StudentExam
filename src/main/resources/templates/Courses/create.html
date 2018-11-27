@@ -16,13 +16,6 @@
 </head>
 <body>
 
-
-
-
-
-
-
-
 <div class="sidenav">
     <a href="#">About</a>
     <a href="#">Services</a>
@@ -31,19 +24,28 @@
 </div>
 
 <div class="main">
-    <h2>Courses</h2>
-    <div th:each="course : ${courses}">
-        <h1 th:text="${course.courseNameDanish}"></h1>
-        <a th:href="${'edit?id='+course.courseID}" type="button">Rediger</a>
+    <h2>Create Course</h2>
+    <form th:action="@{/course/create}" method="post">
+        <input type="text" th:field="${courseModel.courseNameDanish}">
+        <input type="text" th:field="${courseModel.courseNameEnglish}">
+        <input type="text" th:field="${courseModel.courseSemester}">
+        <input type="text" th:field="${courseModel.courseClassCode}">
+        <input type="text" th:field="${courseModel.courseStudyProgramme}">
+        <input type="text" th:field="${courseModel.courseECTS}">
+        <input type="text" th:field="${courseModel.courseLanguage}">
+        <input type="text" th:field="${courseModel.courseMinStudents}">
+        <input type="text" th:field="${courseModel.courseExpectedStudents}">
+        <input type="text" th:field="${courseModel.courseMaxStudents}">
+        <input type="text" th:field="${courseModel.coursePrerequisites}">
+        <input type="text" th:field="${courseModel.courseLearningOutcome}">
+        <input type="text" th:field="${courseModel.courseContent}">
+        <input type="text" th:field="${courseModel.courseLearningActivities}">
+        <input type="text" th:field="${courseModel.courseExamForm}">
+        <input type="text" th:field="${courseModel.courseMandatory}">
+        <button type="submit" >Opret Fag</button>
+    </form>
 
-    </div>
 </div>
-
-
-
-
-
-
 
 
 <!-- Optional JavaScript -->

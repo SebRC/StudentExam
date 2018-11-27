@@ -25,10 +25,11 @@ public class CourseServiceImpl implements CourseService
         return courseRepo.getOne(id);
     }
 
-    public void saveOne(CourseModel courseModel)
+    public void save(CourseModel courseModel)
     {
         courseRepo.save(courseModel);
     }
+
     public void consumeWebService()
     {
         String devURL = "http://18.185.40.91/course";
@@ -52,7 +53,7 @@ public class CourseServiceImpl implements CourseService
         courseRepo.saveAll(localCoursesList);
     }
 
-    public void update()
+    public void updateFromWebservice()
     {
         String devURL = "http://18.185.40.91/course";
 

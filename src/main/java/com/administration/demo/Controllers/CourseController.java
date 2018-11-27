@@ -5,9 +5,10 @@ import com.administration.demo.Services.CourseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller("/course")
+@RequestMapping("/course")
+@Controller
 public class CourseController
 {
     @Autowired
@@ -19,32 +20,48 @@ public class CourseController
     {
         courseService.consumeWebService();
 
-        return "Courses/edit";
-    }
-
-    @GetMapping("/editTest")
-    public String test()
-    {
-        CourseModel courseModel = courseService.findOne(1);
-
-        courseModel.setCourseClassCode("TEST AF KLASSEKODE");
-
-        courseService.saveOne(courseModel);
-
-        return "Courses/edit";
+        return "Courses/course";
     }
 
     @GetMapping
     public String courses(Model model)
     {
-        courseService.update();
+        courseService.updateFromWebservice();
 
         model.addAttribute("courses", courseService.getAllCoursesFromDatabase());
 
         return "Courses/course";
     }
 
+    @GetMapping("/create")
+    public String createCourse(Model model)
+    {
+        model.addAttribute("courseModel", new CourseModel());
 
+        return "Courses/create";
+    }
 
+    @PostMapping("/create")
+    public String createCourse(@ModelAttribute CourseModel courseModel)
+    {
+        courseService.save(courseModel);
+        return "redirect:/course";
+    }
+
+    @GetMapping("/edit")
+    public String editCourse(@RequestParam ("id") int id, Model model)
+    {
+        model.addAttribute("courseModel", courseService.findOne(id));
+
+        return "Courses/edit";
+    }
+
+    @PostMapping("/edit")
+    public String editCourse(@ModelAttribute CourseModel courseModel)
+    {
+        courseService.save(courseModel);
+
+        return "redirect:/course";
+    }
 
 }
