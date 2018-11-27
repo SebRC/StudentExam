@@ -20,85 +20,16 @@ public class CourseServiceImpl implements CourseService
         return courseRepo.findAll();
     }
 
-    //TO DO
-    //testklasse
-
-    /*
-    public CourseModel testJson() throws IOException
+    public CourseModel findOne(int id)
     {
-        RestTemplate restTemplate = new RestTemplate();
-
-        String devURL = "http://18.185.40.91/course/1";
-
-        CourseWebModel courseWebModel = restTemplate.getForObject(devURL, CourseWebModel.class);
-
-        CourseModel courseModel = new CourseModel(courseWebModel.getId(), courseWebModel.getName(), "Software Construction",
-                courseWebModel.getSemester(),"WD-2018-32", courseWebModel.getStudyprogramme(),
-                courseWebModel.getEcts(), courseWebModel.getLanguage(), 15, 30, 50, "Java and sql", "Learn java and sql again",
-                "Java and coding", "Laern stuff", "Written exam", courseWebModel.isMandatory());
-
-        return courseModel;
-
-    }
-    */
-
-    public void getAllCoursesFromWebservice()
-    {
-        String devURL = "http://18.185.40.91/course/";
-
-        RestTemplate restTemplate = new RestTemplate();
-
-        List<CourseWebModel> courseWebModels = new ArrayList<>();
-
-        for (int i = 1; i < 21; i++)
-        {
-            CourseWebModel courseWebModel = restTemplate.getForObject(devURL + i, CourseWebModel.class);
-
-            courseWebModels.add(courseWebModel);
-
-        }
-
-
-        List<CourseModel> localCoursesList = new ArrayList<>();
-
-
-        for (CourseWebModel courseWebModel : courseWebModels)
-        {
-            CourseModel courseModel = new CourseModel(courseWebModel.getId(), courseWebModel.getNamedanish(), courseWebModel.getName(),
-                    courseWebModel.getSemester(), courseWebModel.getStudyprogramme(),
-                    courseWebModel.getEcts(), courseWebModel.getLanguage(), courseWebModel.getDescription(), courseWebModel.isMandatory());
-
-
-            localCoursesList.add(courseModel);
-        }
-
-        courseRepo.saveAll(localCoursesList);
+        return courseRepo.getOne(id);
     }
 
-    public void consumeWebserviceCourses()
+    public void saveOne(CourseModel courseModel)
     {
-        String devURL = "http://18.185.40.91/course";
-
-        RestTemplate restTemplate = new RestTemplate();
-
-        ArrayList<CourseWebModel> courseWebModels = restTemplate.getForObject(devURL, ArrayList.class);
-
-        List<CourseModel> localCoursesList = new ArrayList<>();
-
-        for (CourseWebModel courseWebModel : courseWebModels)
-        {
-            CourseModel courseModel = new CourseModel(courseWebModel.getId(), courseWebModel.getNamedanish(), courseWebModel.getName(),
-                    courseWebModel.getSemester(), courseWebModel.getStudyprogramme(),
-                    courseWebModel.getEcts(), courseWebModel.getLanguage(), courseWebModel.getDescription(), courseWebModel.isMandatory());
-
-
-            localCoursesList.add(courseModel);
-        }
-
-        courseRepo.saveAll(localCoursesList);
+        courseRepo.save(courseModel);
     }
-
-    public List<CourseModel> test()
+    public void consumeWebService()
     {
         String devURL = "http://18.185.40.91/course";
 
@@ -119,8 +50,30 @@ public class CourseServiceImpl implements CourseService
         }
 
         courseRepo.saveAll(localCoursesList);
+    }
 
-        return localCoursesList;
+    public void update()
+    {
+        String devURL = "http://18.185.40.91/course";
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        CourseWebModel[] courseWebModelsArray = restTemplate.getForObject(devURL, CourseWebModel[].class);
+
+        List<CourseModel> localCoursesList = courseRepo.findAll();
+
+        for (int i = 1; i < courseWebModelsArray.length; i++)
+        {
+            localCoursesList.get(i).setCourseNameDanish(courseWebModelsArray[i].getNamedanish());
+            localCoursesList.get(i).setCourseNameEnglish(courseWebModelsArray[i].getName());
+            localCoursesList.get(i).setCourseSemester(courseWebModelsArray[i].getSemester());
+            localCoursesList.get(i).setCourseECTS(courseWebModelsArray[i].getEcts());
+            localCoursesList.get(i).setCourseStudyProgramme(courseWebModelsArray[i].getStudyprogramme());
+            localCoursesList.get(i).setCourseLanguage(courseWebModelsArray[i].getLanguage());
+            localCoursesList.get(i).setCourseContent(courseWebModelsArray[i].getDescription());
+        }
+
+        courseRepo.saveAll(localCoursesList);
     }
 
 
