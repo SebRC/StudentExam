@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -59,11 +61,29 @@ public class CourseServiceImpl implements CourseService
 
         RestTemplate restTemplate = new RestTemplate();
 
+
+
         CourseWebModel[] courseWebModelsArray = restTemplate.getForObject(devURL, CourseWebModel[].class);
+
+        //System.out.println(courseWebModelsArray[0]);
 
         List<CourseModel> localCoursesList = courseRepo.findAll();
 
-        for (int i = 1; i < courseWebModelsArray.length; i++)
+        Iterator<CourseModel> courseModelIterator = localCoursesList.iterator();
+
+        courseModelIterator.next();
+        for(int i = 1; i < courseWebModelsArray.length; i++)
+        {
+            CourseModel courseModel = courseModelIterator.next();
+            courseModel.setCourseNameDanish(courseWebModelsArray[i].getNamedanish());
+        }
+
+
+
+
+
+
+        /*for (int i = 1; i < courseWebModelsArray.length; i++)
         {
             localCoursesList.get(i).setCourseNameDanish(courseWebModelsArray[i].getNamedanish());
             localCoursesList.get(i).setCourseNameEnglish(courseWebModelsArray[i].getName());
@@ -72,13 +92,13 @@ public class CourseServiceImpl implements CourseService
             localCoursesList.get(i).setCourseStudyProgramme(courseWebModelsArray[i].getStudyprogramme());
             localCoursesList.get(i).setCourseLanguage(courseWebModelsArray[i].getLanguage());
             localCoursesList.get(i).setCourseContent(courseWebModelsArray[i].getDescription());
-        }
+        }*/
 
         courseRepo.saveAll(localCoursesList);
     }
 
-    public void deleteFromDatabase(CourseModel courseModel)
+    public void deleteFromDatabase(int id)
     {
-        courseRepo.delete(courseModel);
+        courseRepo.deleteById(id);
     }
 }

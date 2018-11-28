@@ -24,10 +24,18 @@ public class CourseController
         return "Courses/course";
     }
 
+    @GetMapping("/update")
+    public String updateFromWebservice()
+    {
+        courseService.updateFromWebservice();
+
+        return "Courses/course";
+    }
+
     @GetMapping
     public String courses(Model model)
     {
-        courseService.updateFromWebservice();
+        //courseService.updateFromWebservice();
 
         model.addAttribute("courses", courseService.getAllCoursesFromDatabase());
 
@@ -75,9 +83,9 @@ public class CourseController
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteCourse(@PathVariable int id, @ModelAttribute CourseModel courseModel)
+    public String deleteCourse(@PathVariable int id)
     {
-        courseService.deleteFromDatabase(courseModel);
+        courseService.deleteFromDatabase(id);
 
         return "redirect:/course/";
     }

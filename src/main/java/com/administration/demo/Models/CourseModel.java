@@ -36,18 +36,18 @@ public class CourseModel implements Serializable
         this.courseNameDanish = courseNameDanish;
         this.courseNameEnglish = courseNameEnglish;
         this.courseSemester = courseSemester;
-        this.courseClassCode = "Default";
+        //this.courseClassCode = "Default";
         this.courseStudyProgramme = courseStudyProgramme;
         this.courseECTS = courseECTS;
         this.courseLanguage = courseLanguage;
-        this.courseMinStudents = 0;
-        this.courseExpectedStudents = 0;
-        this.courseMaxStudents = 0;
-        this.coursePrerequisites = "Default";
+        //this.courseMinStudents = 0;
+        //this.courseExpectedStudents = 0;
+        //this.courseMaxStudents = 0;
+        //this.coursePrerequisites = "Default";
         this.courseLearningOutcome = courseLearningOutcome;
-        this.courseContent = "Default";
-        this.courseLearningActivities = "Default";
-        this.courseExamForm = "Default";
+        //this.courseContent = "Default";
+        //this.courseLearningActivities = "Default";
+        //this.courseExamForm = "Default";
 
         //converts a boolean to an int to store in database
         this.courseMandatory = 0;
