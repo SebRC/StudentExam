@@ -74,7 +74,7 @@ public class CourseController
         return "Courses/delete";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteCourse(@PathVariable int id, @ModelAttribute CourseModel courseModel)
     {
         courseService.deleteFromDatabase(courseModel);
