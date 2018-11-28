@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+  <h1 th:text="${courseModel.courseNameDanish}"></h1>
+  <h1> er du sikker på at du vil slette dette fag? </h1>
+  <a href="${/course}" type="button">Nej</a>
+
+  <form th:action="@{/deleteCourse/} + ${courseModel.courseID}" method="post">
+
+      <input type="submit" value="Ja"/>
+  </form>
+
+</body>
+</html>
