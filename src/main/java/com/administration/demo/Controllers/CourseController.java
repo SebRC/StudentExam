@@ -3,6 +3,7 @@ package com.administration.demo.Controllers;
 import com.administration.demo.Models.CourseModel;
 import com.administration.demo.Services.CourseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -56,12 +57,17 @@ public class CourseController
         return "Courses/edit";
     }
 
-    @PostMapping("/edit")
-    public String editCourse(@ModelAttribute CourseModel courseModel)
+
+    @PostMapping("/edit/{id}")
+    public String editCourse(@PathVariable int id, @ModelAttribute CourseModel courseModel)
     {
+
         courseService.save(courseModel);
 
-        return "redirect:/course";
+        return "redirect:/course/";
     }
 
 }
+
+
+
