@@ -54,6 +54,7 @@ public class CourseController
     public String createCourse(@ModelAttribute CourseModel courseModel)
     {
         courseService.save(courseModel);
+
         return "redirect:/course";
     }
 

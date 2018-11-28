@@ -34,6 +34,15 @@
 <div class="main">
     <h2>Courses</h2>
 
+    <form action="/course/update" method="get">
+
+        <input class="btn btn-success" type="submit" value="Update"/>
+    </form>
+    <form action="/course/consume" method="get">
+
+        <input class="btn btn-danger" type="submit" value="Consume"/>
+    </form>
+
     <!--
     <div th:each="course : ${courses}">
         <h1 th:text="${course.courseNameDanish}"></h1>
