@@ -77,5 +77,8 @@ public class CourseServiceImpl implements CourseService
         courseRepo.saveAll(localCoursesList);
     }
 
-
+    public void deleteFromDatabase(CourseModel courseModel)
+    {
+        courseRepo.delete(courseModel);
+    }
 }

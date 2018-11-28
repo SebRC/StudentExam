@@ -71,9 +71,16 @@ public class CourseController
     {
         model.addAttribute("courseModel", courseService.findOne(id));
 
-        return "Courses/edit";
+        return "Courses/delete";
     }
 
+    @DeleteMapping("/delete/{id}")
+    public String deleteCourse(@PathVariable int id, @ModelAttribute CourseModel courseModel)
+    {
+        courseService.deleteFromDatabase(courseModel);
+
+        return "redirect:/course/";
+    }
 
 
 }
