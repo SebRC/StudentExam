@@ -61,11 +61,27 @@ public class CourseController
     @PostMapping("/edit/{id}")
     public String editCourse(@PathVariable int id, @ModelAttribute CourseModel courseModel)
     {
-
         courseService.save(courseModel);
 
         return "redirect:/course/";
     }
+
+    @GetMapping("/delete")
+    public String deleteCourse(@RequestParam ("id") int id, Model model)
+    {
+        model.addAttribute("courseModel", courseService.findOne(id));
+
+        return "Courses/delete";
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteCourse(@PathVariable int id, @ModelAttribute CourseModel courseModel)
+    {
+        courseService.deleteFromDatabase(courseModel);
+
+        return "redirect:/course/";
+    }
+
 
 }
 

@@ -38,6 +38,7 @@
     <div th:each="course : ${courses}">
         <h1 th:text="${course.courseNameDanish}"></h1>
         <a th:href="${'edit?id='+course.courseID}" type="button">Rediger</a>
+        <a th:href="${'delete?id='+course.courseID}" type="button">Slet</a>
 
     </div>
 
