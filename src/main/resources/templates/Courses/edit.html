@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- custom css -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 
 </head>
@@ -24,7 +24,8 @@
 </div>
 
 <div class="main">
-    <h2>Create Course</h2>
+    <h2>Edit Course</h2>
+    <!--
     <form th:action="@{/course/edit/} + ${courseModel.courseID}" method="post">
         <input type="hidden" th:field="${courseModel.courseID}">
         <input type="text" th:field="${courseModel.courseNameDanish}">
@@ -46,6 +47,21 @@
         <br>
         <button type="submit" >Opret Fag</button>
     </form>
+    -->
+
+    <div class="col-md-4">
+        <form  th:action="@{/course/edit/} + ${courseModel.courseID}" method="post">
+            <input type="hidden" th:field="${courseModel.courseID}">
+            <div class="form-group">
+                <label>Name English</label>
+                <input type="text" class="form-control" th:field="${courseModel.courseNameDanish}">
+            </div>
+            <div class="form-group">
+                <label>Name English</label>
+                <input type="text" class="form-control" th:field="${courseModel.courseNameEnglish}">
+            </div>
+        </form>
+    </div>
 
 </div>
 
