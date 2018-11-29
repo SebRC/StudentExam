@@ -73,11 +73,9 @@ public class CourseServiceImpl implements CourseService
 
         List<CourseWebModel> courseWebModels = Arrays.asList(courseWebModelsArray);
 
-        for (CourseWebModel courseWebModel1 : courseWebModels)
+        for (CourseWebModel courseWebModel : courseWebModels)
         {
             CourseModel courseModel = courseModelIterator.next();
-
-            CourseWebModel courseWebModel = courseWebModel1;
 
             courseModel.setCourseNameDanish(courseWebModel.getNamedanish());
             courseModel.setCourseNameEnglish(courseWebModel.getName());
@@ -95,10 +93,6 @@ public class CourseServiceImpl implements CourseService
             CourseModel courseModel = courseModelIterator.next();
             courseModel.setCourseNameDanish(courseWebModelsArray[i].getNamedanish());
         }*/
-
-
-
-
 
 
         /*for (int i = 1; i < courseWebModelsArray.length; i++)
