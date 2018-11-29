@@ -32,7 +32,7 @@
 </div>
 
 <div class="main">
-    <h2>Courses</h2>
+    <h2>Fag</h2>
 
     <form action="/course/update" method="get">
 
@@ -58,13 +58,13 @@
             <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Course Danish</th>
-                <th scope="col">Course English</th>
-                <th scope="col">Teachers</th>
-                <th scope="col">Class Code</th>
+                <th scope="col">Navn Dansk</th>
+                <th scope="col">Navn Engelsk</th>
+                <th scope="col">Lærere</th>
+                <th scope="col">Klassekode</th>
                 <th scope="col">Semester</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
+                <th scope="col">Rediger</th>
+                <th scope="col">Slet</th>
             </tr>
             </thead>
             <tbody>
@@ -75,8 +75,8 @@
                 <td>Teachers</td>
                 <td th:text="${course.courseClassCode}"></td>
                 <td th:text="${course.courseSemester}"></td>
-                <td><a th:href="${'edit?id='+course.courseID}"><button type="button" class="btn btn-success">Edit</button></a></td>
-                <td><a th:href="${'delete?id='+course.courseID}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                <td><a th:href="${'edit?id='+course.courseID}"><button type="button" class="btn btn-success">Rediger</button></a></td>
+                <td><a th:href="${'delete?id='+course.courseID}"><button type="button" class="btn btn-danger">Slet</button></a></td>
             </tr>
 
             </tbody>

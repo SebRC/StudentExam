@@ -25,29 +25,6 @@
 
 <div class="main">
     <h2>Edit Course</h2>
-    <!--
-    <form th:action="@{/course/edit/} + ${courseModel.courseID}" method="post">
-        <input type="hidden" th:field="${courseModel.courseID}">
-        <input type="text" th:field="${courseModel.courseNameDanish}">
-        <input type="text" th:field="${courseModel.courseNameEnglish}">
-        <input type="text" th:field="${courseModel.courseSemester}">
-        <input type="text" th:field="${courseModel.courseClassCode}">
-        <input type="text" th:field="${courseModel.courseStudyProgramme}">
-        <input type="text" th:field="${courseModel.courseECTS}">
-        <input type="text" th:field="${courseModel.courseLanguage}">
-        <input type="text" th:field="${courseModel.courseMinStudents}">
-        <input type="text" th:field="${courseModel.courseExpectedStudents}">
-        <input type="text" th:field="${courseModel.courseMaxStudents}">
-        <input type="text" th:field="${courseModel.coursePrerequisites}">
-        <input type="text" th:field="${courseModel.courseLearningOutcome}">
-        <input type="text" th:field="${courseModel.courseContent}">
-        <input type="text" th:field="${courseModel.courseLearningActivities}">
-        <input type="text" th:field="${courseModel.courseExamForm}">
-        <input type="text" th:field="${courseModel.courseMandatory}">
-        <br>
-        <button type="submit" >Opret Fag</button>
-    </form>
-    -->
 
     <div class="col-md-4">
         <form th:action="@{/course/edit/} + ${courseModel.courseID}" method="post">
@@ -117,7 +94,52 @@
                 <textarea class="form-control" rows="5" th:field="${courseModel.coursePrerequisites}"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-success">Rediger</button>
+            <div class="form-group">
+                <label>Læringsudbytte</label>
+                <textarea class="form-control" rows="5" th:field="${courseModel.courseLearningOutcome}"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Indhold</label>
+                <textarea class="form-control" rows="5" th:field="${courseModel.courseContent}"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Læringsaktiviteter</label>
+                <textarea class="form-control" rows="5" th:field="${courseModel.courseLearningActivities}"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Eksamenstype</label>
+                <textarea class="form-control" rows="5" th:field="${courseModel.courseExamForm}"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Type</label>
+                <div class="col-sm-5">
+                    <select class="form-control" th:field="${courseModel.courseMandatory}">
+
+                        <option value="1">Obligatorisk</option>
+                        <option value="0">Valgfag</option>
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Lærere :</label>
+                <div>
+                    <select multiple class="form-control">
+
+                    <option value="1">Hans</option>
+                    <option value="2">Peter</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" style="margin-bottom: 20px;" class="btn btn-success">Rediger</button>
+
+            <br>
 
         </form>
     </div>
