@@ -97,6 +97,26 @@
                 <input type="text" class="form-control" th:field="${courseModel.courseLanguage}">
             </div>
 
+            <div class="form-group">
+                <label>Minimum Elever</label>
+                <input type="text" class="form-control" th:field="${courseModel.courseMinStudents}">
+            </div>
+
+            <div class="form-group">
+                <label>Forventede Elever</label>
+                <input type="text" class="form-control" th:field="${courseModel.courseExpectedStudents}">
+            </div>
+
+            <div class="form-group">
+                <label>Max Elever</label>
+                <input type="text" class="form-control" th:field="${courseModel.courseMaxStudents}">
+            </div>
+
+            <div class="form-group">
+                <label>Forudsætninger</label>
+                <textarea class="form-control" rows="5" th:field="${courseModel.coursePrerequisites}"></textarea>
+            </div>
+
             <button type="submit" class="btn btn-success">Rediger</button>
 
         </form>

@@ -59,12 +59,12 @@
             <artifactId>commons-dbcp</artifactId>
         </dependency>
 
-        <!-- Solves old dates format, the newer MySQL doesn´t work with the timeformat, have to downgrade!
+        <!-- Solves old dates format, the newer MySQL doesn´t work with the timeformat, have to downgrade!-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.39</version>
-        </dependency> -->
+        </dependency>
 
     </dependencies>
 
