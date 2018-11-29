@@ -21,7 +21,7 @@ public class CourseController
     {
         courseService.consumeWebService();
 
-        return "Courses/course";
+        return "redirect:/course/";
     }
 
     @GetMapping("/update")
@@ -29,7 +29,7 @@ public class CourseController
     {
         courseService.updateFromWebservice();
 
-        return "Courses/course";
+        return "redirect:/course/";
     }
 
     @GetMapping

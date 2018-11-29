@@ -80,6 +80,13 @@ public class CourseServiceImpl implements CourseService
             CourseWebModel courseWebModel = courseWebModel1;
 
             courseModel.setCourseNameDanish(courseWebModel.getNamedanish());
+            courseModel.setCourseNameEnglish(courseWebModel.getName());
+            courseModel.setCourseSemester(courseModel.getCourseSemester());
+            courseModel.setCourseStudyProgramme(courseModel.getCourseStudyProgramme());
+            courseModel.setCourseECTS(courseModel.getCourseECTS());
+            courseModel.setCourseLanguage(courseModel.getCourseLanguage());
+            courseModel.setCourseLearningOutcome(courseModel.getCourseLearningOutcome());
+            courseModel.setCourseMandatory(courseModel.getCourseMandatory());
         }
 
         /*courseModelIterator.next();
