@@ -3,7 +3,7 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta teacherName="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
     <!-- Bootstrap CSS -->
@@ -59,8 +59,8 @@
                 <td>Teachers</td>
                 <td th:text="${course.courseClassCode}"></td>
                 <td th:text="${course.courseSemester}"></td>
-                <td><a th:href="${'edit?id='+course.courseID}"><button type="button" class="btn btn-success">Rediger</button></a></td>
-                <td><a th:href="${'delete?id='+course.courseID}"><button type="button" class="btn btn-danger">Slet</button></a></td>
+                <td><a th:href="${'edit?teacherID='+course.courseID}"><button type="button" class="btn btn-success">Rediger</button></a></td>
+                <td><a th:href="${'delete?teacherID='+course.courseID}"><button type="button" class="btn btn-danger">Slet</button></a></td>
             </tr>
 
             </tbody>

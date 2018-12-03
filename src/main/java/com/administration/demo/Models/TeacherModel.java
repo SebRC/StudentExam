@@ -9,40 +9,40 @@ public class TeacherModel
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String name;
+    private int teacherID;
+    private String teacherName;
     @Email
-    private String email;
+    private String teacherEmail;
 
     public TeacherModel(){}
 
-    public int getId()
+    public int getTeacherID()
     {
-        return id;
+        return teacherID;
     }
 
-    public void setId(int id)
+    public void setTeacherID(int teacherID)
     {
-        this.id = id;
+        this.teacherID = teacherID;
     }
 
-    public String getName()
+    public String getTeacherName()
     {
-        return name;
+        return teacherName;
     }
 
-    public void setName(String name)
+    public void setTeacherName(String teacherName)
     {
-        this.name = name;
+        this.teacherName = teacherName;
     }
 
-    public String getEmail()
+    public String getTeacherEmail()
     {
-        return email;
+        return teacherEmail;
     }
 
-    public void setEmail(String email)
+    public void setTeacherEmail(String teacherEmail)
     {
-        this.email = email;
+        this.teacherEmail = teacherEmail;
     }
 }
