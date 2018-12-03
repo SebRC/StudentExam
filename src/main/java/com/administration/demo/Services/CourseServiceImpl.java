@@ -17,31 +17,40 @@ public class CourseServiceImpl implements CourseService
     @Autowired
     private CourseRepo courseRepo;
 
+
+    //  gets a list of all courses from local database
     public List<CourseModel> getAllCoursesFromDatabase()
     {
         return courseRepo.findAll();
     }
 
+
+    //  gets one specific course from local database
     public CourseModel findOne(int id)
     {
         return courseRepo.getOne(id);
     }
 
+    //  used in create and edit. saves info from form
     public void save(CourseModel courseModel)
     {
         courseRepo.save(courseModel);
     }
 
+    //  Used only once if local database is unpopulated, gets info from legacy system (web) and saves locally
     public void consumeWebService()
     {
+        //  endpoint for courses
         String devURL = "http://18.185.40.91/course";
 
         RestTemplate restTemplate = new RestTemplate();
 
+        //  Temporary list to store legacy courses for saving
         CourseWebModel[] courseWebModelsArray = restTemplate.getForObject(devURL, CourseWebModel[].class);
 
         List<CourseModel> localCoursesList = new ArrayList<>();
 
+        //  converts legacy courses to our model
         for (CourseWebModel courseWebModel : courseWebModelsArray)
         {
             CourseModel courseModel = new CourseModel(courseWebModel.getId(), courseWebModel.getNamedanish(), courseWebModel.getName(),
@@ -52,20 +61,18 @@ public class CourseServiceImpl implements CourseService
             localCoursesList.add(courseModel);
         }
 
+        //  saves the converted models in local database
         courseRepo.saveAll(localCoursesList);
     }
 
+    //  uses an iterator to go through the attributes of our models from local database, and overwrites values to the updated values from legacy system
     public void updateFromWebservice()
     {
         String devURL = "http://18.185.40.91/course";
 
         RestTemplate restTemplate = new RestTemplate();
 
-
-
         CourseWebModel[] courseWebModelsArray = restTemplate.getForObject(devURL, CourseWebModel[].class);
-
-        //System.out.println(courseWebModelsArray[0]);
 
         List<CourseModel> localCoursesList = courseRepo.findAll();
 
@@ -73,8 +80,15 @@ public class CourseServiceImpl implements CourseService
 
         List<CourseWebModel> courseWebModels = Arrays.asList(courseWebModelsArray);
 
+        // TODO:  if statement hvis den ikke har next så skal den adde til local courses
         for (CourseWebModel courseWebModel : courseWebModels)
         {
+            if(!courseModelIterator.hasNext())
+            {
+                CourseModel newCourseModel = new CourseModel();
+            }
+
+
             CourseModel courseModel = courseModelIterator.next();
 
             courseModel.setCourseNameDanish(courseWebModel.getNamedanish());
@@ -87,28 +101,10 @@ public class CourseServiceImpl implements CourseService
             courseModel.setCourseMandatory(courseModel.getCourseMandatory());
         }
 
-        /*courseModelIterator.next();
-        for(int i = 1; i < courseWebModelsArray.length; i++)
-        {
-            CourseModel courseModel = courseModelIterator.next();
-            courseModel.setCourseNameDanish(courseWebModelsArray[i].getNamedanish());
-        }*/
-
-
-        /*for (int i = 1; i < courseWebModelsArray.length; i++)
-        {
-            localCoursesList.get(i).setCourseNameDanish(courseWebModelsArray[i].getNamedanish());
-            localCoursesList.get(i).setCourseNameEnglish(courseWebModelsArray[i].getName());
-            localCoursesList.get(i).setCourseSemester(courseWebModelsArray[i].getSemester());
-            localCoursesList.get(i).setCourseECTS(courseWebModelsArray[i].getEcts());
-            localCoursesList.get(i).setCourseStudyProgramme(courseWebModelsArray[i].getStudyprogramme());
-            localCoursesList.get(i).setCourseLanguage(courseWebModelsArray[i].getLanguage());
-            localCoursesList.get(i).setCourseContent(courseWebModelsArray[i].getDescription());
-        }*/
-
         courseRepo.saveAll(localCoursesList);
     }
 
+    //  deletes specific course
     public void deleteFromDatabase(int id)
     {
         courseRepo.deleteById(id);

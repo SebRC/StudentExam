@@ -32,16 +32,17 @@ public class CourseController
         return "redirect:/course/";
     }
 
+    //  Course List Page
     @GetMapping
     public String courses(Model model)
     {
-        //courseService.updateFromWebservice();
-
         model.addAttribute("courses", courseService.getAllCoursesFromDatabase());
 
         return "Courses/course";
     }
 
+
+    // CRUD
     @GetMapping("/create")
     public String createCourse(Model model)
     {
@@ -90,6 +91,7 @@ public class CourseController
 
         return "redirect:/course/";
     }
+    //CRUD End
 
 
 }

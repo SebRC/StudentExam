@@ -3,7 +3,9 @@ package com.administration.demo.Models;
 import javax.persistence.*;
 import java.io.Serializable;
 
+//  This is our representation of a course in our local database
 @Entity
+@Table(name="courses")
 public class CourseModel implements Serializable
 {
     @Id
@@ -26,9 +28,10 @@ public class CourseModel implements Serializable
     private String courseExamForm;
     private int courseMandatory;
 
-
+    //  Empty constructor for Spring purposes
     public CourseModel(){}
 
+    //  Actual constructor used for saving to datab
     public CourseModel(int courseID, String courseNameDanish, String courseNameEnglish, int courseSemester, String courseStudyProgramme, String courseECTS, String courseLanguage,
                        String courseLearningOutcome, boolean isMandatory)
     {
@@ -36,20 +39,15 @@ public class CourseModel implements Serializable
         this.courseNameDanish = courseNameDanish;
         this.courseNameEnglish = courseNameEnglish;
         this.courseSemester = courseSemester;
-        //this.courseClassCode = "Default";
+
         this.courseStudyProgramme = courseStudyProgramme;
         this.courseECTS = courseECTS;
         this.courseLanguage = courseLanguage;
-        //this.courseMinStudents = 0;
-        //this.courseExpectedStudents = 0;
-        //this.courseMaxStudents = 0;
-        //this.coursePrerequisites = "Default";
-        this.courseLearningOutcome = courseLearningOutcome;
-        //this.courseContent = "Default";
-        //this.courseLearningActivities = "Default";
-        //this.courseExamForm = "Default";
 
-        //converts a boolean to an int to store in database
+        this.courseLearningOutcome = courseLearningOutcome;
+
+
+        //converts a boolean to an int to store in database, aka Mandatory true or false
         this.courseMandatory = 0;
         if(isMandatory)
         {

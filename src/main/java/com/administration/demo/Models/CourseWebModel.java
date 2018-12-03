@@ -2,6 +2,7 @@ package com.administration.demo.Models;
 
 import java.io.Serializable;
 
+//  This is our representation of a course from the legacy system (web)
 public class CourseWebModel implements Serializable
 {
     private int id;
