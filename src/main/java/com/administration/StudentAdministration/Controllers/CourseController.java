@@ -1,7 +1,8 @@
-package com.administration.demo.Controllers;
+package com.administration.StudentAdministration.Controllers;
 
-import com.administration.demo.Models.CourseModel;
-import com.administration.demo.Services.CourseServices.CourseServiceImpl;
+import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
+import com.administration.StudentAdministration.Services.CourseServices.CourseServiceImpl;
+import com.administration.StudentAdministration.Services.TeacherServices.TeacherServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,9 @@ public class CourseController
 {
     @Autowired
     private CourseServiceImpl courseService;
+
+    @Autowired
+    private TeacherServiceImpl teacherService;
 
 
     @GetMapping("/consume")
@@ -46,6 +50,8 @@ public class CourseController
     public String createCourse(Model model)
     {
         model.addAttribute("courseModel", new CourseModel());
+
+        model.addAttribute("teachers", teacherService.getAllTeachersFromDatabase());
 
         return "Courses/create";
     }

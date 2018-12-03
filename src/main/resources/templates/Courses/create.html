@@ -129,10 +129,12 @@
             <div class="form-group">
                 <label class="control-label">Lærere :</label>
                 <div>
-                    <select multiple class="form-control">
+                    <select multiple class="form-control" th:field="${courseModel.teachers}">
+                        <option th:each="teacherModel : ${teachers}"
+                                th:value="${teacherModel.teacherID}"
+                                th:text="${teacherModel.teacherName}">
 
-                        <option value="1">Hans</option>
-                        <option value="2">Peter</option>
+                        </option>
                     </select>
                 </div>
             </div>

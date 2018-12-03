@@ -1,7 +1,12 @@
-package com.administration.demo.Models;
+package com.administration.StudentAdministration.Models.CourseModels;
+
+import com.administration.StudentAdministration.Models.StudentModel;
+import com.administration.StudentAdministration.Models.TeacherModels.TeacherModel;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 //  This is our representation of a course in our local database
 @Entity
@@ -27,6 +32,32 @@ public class CourseModel implements Serializable
     private String courseLearningActivities;
     private String courseExamForm;
     private int courseMandatory;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "courses_teachers",
+            joinColumns = { @JoinColumn(name = "courseid") },
+            inverseJoinColumns = { @JoinColumn(name = "teacherid") })
+    private Set<TeacherModel> teachers = new HashSet<>();
+
+
+
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "courses_students",
+            joinColumns = { @JoinColumn(name = "courseid") },
+            inverseJoinColumns = { @JoinColumn(name = "studentid") })
+    private Set<StudentModel> students = new HashSet<>();
+
+
+
 
     //  Empty constructor for Spring purposes
     public CourseModel(){}
@@ -233,4 +264,13 @@ public class CourseModel implements Serializable
         this.courseMandatory = courseMandatory;
     }
 
+    public Set<TeacherModel> getTeachers()
+    {
+        return teachers;
+    }
+
+    public void setTeachers(Set<TeacherModel> teachers)
+    {
+        this.teachers = teachers;
+    }
 }

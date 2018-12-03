@@ -1,8 +1,8 @@
-package com.administration.demo.Services.CourseServices;
+package com.administration.StudentAdministration.Services.CourseServices;
 
-import com.administration.demo.Models.CourseModel;
-import com.administration.demo.Models.CourseWebModel;
-import com.administration.demo.Repositories.CourseRepo;
+import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
+import com.administration.StudentAdministration.Repositories.CourseRepo;
+import com.administration.StudentAdministration.Models.CourseModels.CourseWebModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

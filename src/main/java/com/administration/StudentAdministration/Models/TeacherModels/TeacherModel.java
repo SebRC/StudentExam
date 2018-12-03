@@ -1,7 +1,11 @@
-package com.administration.demo.Models;
+package com.administration.StudentAdministration.Models.TeacherModels;
+
+import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Teachers")
@@ -14,7 +18,23 @@ public class TeacherModel
     @Email
     private String teacherEmail;
 
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "teachers")
+
+    private Set<CourseModel> courses = new HashSet<>();
+
+
     public TeacherModel(){}
+
+    public TeacherModel(String teacherName, String teacherEmail)
+    {
+        this.teacherName = teacherName;
+        this.teacherEmail = teacherEmail;
+    }
 
     public int getTeacherID()
     {
@@ -44,5 +64,15 @@ public class TeacherModel
     public void setTeacherEmail(String teacherEmail)
     {
         this.teacherEmail = teacherEmail;
+    }
+
+    public Set<CourseModel> getCourses()
+    {
+        return courses;
+    }
+
+    public void setCourses(Set<CourseModel> courses)
+    {
+        this.courses = courses;
     }
 }

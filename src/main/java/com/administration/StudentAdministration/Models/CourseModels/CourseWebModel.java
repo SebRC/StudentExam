@@ -1,4 +1,4 @@
-package com.administration.demo.Models;
+package com.administration.StudentAdministration.Models.CourseModels;
 
 import java.io.Serializable;
 

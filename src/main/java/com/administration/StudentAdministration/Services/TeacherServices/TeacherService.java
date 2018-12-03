@@ -1,6 +1,6 @@
-package com.administration.demo.Services.TeacherServices;
+package com.administration.StudentAdministration.Services.TeacherServices;
 
-import com.administration.demo.Models.TeacherModel;
+import com.administration.StudentAdministration.Models.TeacherModels.TeacherModel;
 
 import java.util.List;
 

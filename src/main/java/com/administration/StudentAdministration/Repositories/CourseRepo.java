@@ -1,6 +1,6 @@
-package com.administration.demo.Repositories;
+package com.administration.StudentAdministration.Repositories;
 
-import com.administration.demo.Models.CourseModel;
+import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

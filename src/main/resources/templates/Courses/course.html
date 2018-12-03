@@ -56,11 +56,11 @@
                 <th scope="row" th:text="${course.courseID}"></th>
                 <td th:text="${course.courseNameDanish}"></td>
                 <td th:text="${course.courseNameEnglish}"></td>
-                <td>Teachers</td>
+                <td>Lærerererere</td>
                 <td th:text="${course.courseClassCode}"></td>
                 <td th:text="${course.courseSemester}"></td>
-                <td><a th:href="${'edit?teacherID='+course.courseID}"><button type="button" class="btn btn-success">Rediger</button></a></td>
-                <td><a th:href="${'delete?teacherID='+course.courseID}"><button type="button" class="btn btn-danger">Slet</button></a></td>
+                <td><a th:href="${'edit?id='+course.courseID}"><button type="button" class="btn btn-success">Rediger</button></a></td>
+                <td><a th:href="${'delete?id='+course.courseID}"><button type="button" class="btn btn-danger">Slet</button></a></td>
             </tr>
 
             </tbody>

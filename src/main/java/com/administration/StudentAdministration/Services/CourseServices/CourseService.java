@@ -1,7 +1,8 @@
-package com.administration.demo.Services.CourseServices;
+package com.administration.StudentAdministration.Services.CourseServices;
 
 
-import com.administration.demo.Models.CourseModel;
+import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
+
 import java.util.List;
 
 //

@@ -1,4 +1,4 @@
-package com.administration.demo.Models;
+package com.administration.StudentAdministration.Models.TeacherModels;
 
 public class TeacherWebModel
 {

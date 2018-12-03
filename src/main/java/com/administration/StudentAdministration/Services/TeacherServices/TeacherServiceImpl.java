@@ -1,11 +1,13 @@
-package com.administration.demo.Services.TeacherServices;
+package com.administration.StudentAdministration.Services.TeacherServices;
 
-import com.administration.demo.Models.TeacherModel;
-import com.administration.demo.Repositories.TeacherRepo;
+import com.administration.StudentAdministration.Models.TeacherModels.TeacherWebModel;
+import com.administration.StudentAdministration.Models.TeacherModels.TeacherModel;
+import com.administration.StudentAdministration.Repositories.TeacherRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import java.util.Arrays;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,11 +43,17 @@ public class TeacherServiceImpl implements TeacherService
 
         RestTemplate restTemplate = new RestTemplate();
 
-        TeacherModel[] teacherModelsArrray = restTemplate.getForObject(devURL, TeacherModel[].class);
+        TeacherWebModel[] teacherWebModelsArrray = restTemplate.getForObject(devURL, TeacherWebModel[].class);
 
-        List<TeacherModel> teacherModels = Arrays.asList(teacherModelsArrray);
+        List<TeacherModel> localTeacherList = new ArrayList<>();
 
-        teacherRepo.saveAll(teacherModels);
+        for (TeacherWebModel teacherWebModel: teacherWebModelsArrray)
+        {
+            TeacherModel teacherModel = new TeacherModel(teacherWebModel.getName(), teacherWebModel.getEmail());
+            localTeacherList.add(teacherModel);
+        }
+
+        teacherRepo.saveAll(localTeacherList);
     }
 
     @Override

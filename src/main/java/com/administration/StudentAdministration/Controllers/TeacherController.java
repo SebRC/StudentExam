@@ -1,10 +1,9 @@
-package com.administration.demo.Controllers;
+package com.administration.StudentAdministration.Controllers;
 
-import com.administration.demo.Services.TeacherServices.TeacherServiceImpl;
+import com.administration.StudentAdministration.Services.TeacherServices.TeacherServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/teacher")
@@ -14,7 +13,7 @@ public class TeacherController
     @Autowired
     private TeacherServiceImpl teacherService;
 
-    @GetMapping("/teacherConsume")
+    @GetMapping("/consume")
     public String teachersConsume()
     {
         teacherService.consumeWebService();

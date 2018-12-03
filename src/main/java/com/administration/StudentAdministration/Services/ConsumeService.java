@@ -1,7 +1,7 @@
-package com.administration.demo.Services;
+package com.administration.StudentAdministration.Services;
 
-import com.administration.demo.Services.CourseServices.CourseServiceImpl;
-import com.administration.demo.Services.TeacherServices.TeacherServiceImpl;
+import com.administration.StudentAdministration.Services.CourseServices.CourseServiceImpl;
+import com.administration.StudentAdministration.Services.TeacherServices.TeacherServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ConsumeService
