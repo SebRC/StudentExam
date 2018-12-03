@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 //  This is our representation of a course in our local database
 @Entity
-@Table(name="courses")
+@Table(name="Courses")
 public class CourseModel implements Serializable
 {
     @Id

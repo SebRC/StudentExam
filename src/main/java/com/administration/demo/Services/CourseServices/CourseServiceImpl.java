@@ -1,4 +1,4 @@
-package com.administration.demo.Services;
+package com.administration.demo.Services.CourseServices;
 
 import com.administration.demo.Models.CourseModel;
 import com.administration.demo.Models.CourseWebModel;
@@ -16,7 +16,6 @@ public class CourseServiceImpl implements CourseService
 {
     @Autowired
     private CourseRepo courseRepo;
-
 
     //  gets a list of all courses from local database
     public List<CourseModel> getAllCoursesFromDatabase()
@@ -85,7 +84,14 @@ public class CourseServiceImpl implements CourseService
         {
             if(!courseModelIterator.hasNext())
             {
-                CourseModel newCourseModel = new CourseModel();
+                CourseModel newCourseModel = new CourseModel(courseWebModel.getId(),
+                        courseWebModel.getNamedanish(), courseWebModel.getName(), courseWebModel.getSemester(),
+                        courseWebModel.getStudyprogramme(), courseWebModel.getEcts(), courseWebModel.getLanguage(),
+                        courseWebModel.getDescription(), courseWebModel.isMandatory());
+
+                localCoursesList.add(newCourseModel);
+
+                break;
             }
 
 

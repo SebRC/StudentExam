@@ -1,4 +1,4 @@
-package com.administration.demo.Services;
+package com.administration.demo.Services.CourseServices;
 
 
 import com.administration.demo.Models.CourseModel;
