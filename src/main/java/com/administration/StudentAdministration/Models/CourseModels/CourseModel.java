@@ -1,6 +1,6 @@
 package com.administration.StudentAdministration.Models.CourseModels;
 
-import com.administration.StudentAdministration.Models.StudentModel;
+import com.administration.StudentAdministration.Models.StudentModels.StudentModel;
 import com.administration.StudentAdministration.Models.TeacherModels.TeacherModel;
 
 import javax.persistence.*;

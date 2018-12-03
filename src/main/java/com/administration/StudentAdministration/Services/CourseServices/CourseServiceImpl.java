@@ -65,6 +65,8 @@ public class CourseServiceImpl implements CourseService
     }
 
     //  uses an iterator to go through the attributes of our models from local database, and overwrites values to the updated values from legacy system
+
+    //  TODO må slette 1 fag
     public void updateFromWebservice()
     {
         String devURL = "http://18.185.40.91/course";
@@ -79,7 +81,6 @@ public class CourseServiceImpl implements CourseService
 
         List<CourseWebModel> courseWebModels = Arrays.asList(courseWebModelsArray);
 
-        // TODO:  if statement hvis den ikke har next så skal den adde til local courses
         for (CourseWebModel courseWebModel : courseWebModels)
         {
             if(!courseModelIterator.hasNext())
@@ -90,21 +91,23 @@ public class CourseServiceImpl implements CourseService
                         courseWebModel.getDescription(), courseWebModel.isMandatory());
 
                 localCoursesList.add(newCourseModel);
+            }
 
-                break;
+            else
+            {
+                CourseModel courseModel = courseModelIterator.next();
+
+                courseModel.setCourseNameDanish(courseWebModel.getNamedanish());
+                courseModel.setCourseNameEnglish(courseWebModel.getName());
+                courseModel.setCourseSemester(courseModel.getCourseSemester());
+                courseModel.setCourseStudyProgramme(courseModel.getCourseStudyProgramme());
+                courseModel.setCourseECTS(courseModel.getCourseECTS());
+                courseModel.setCourseLanguage(courseModel.getCourseLanguage());
+                courseModel.setCourseLearningOutcome(courseModel.getCourseLearningOutcome());
+                courseModel.setCourseMandatory(courseModel.getCourseMandatory());
             }
 
 
-            CourseModel courseModel = courseModelIterator.next();
-
-            courseModel.setCourseNameDanish(courseWebModel.getNamedanish());
-            courseModel.setCourseNameEnglish(courseWebModel.getName());
-            courseModel.setCourseSemester(courseModel.getCourseSemester());
-            courseModel.setCourseStudyProgramme(courseModel.getCourseStudyProgramme());
-            courseModel.setCourseECTS(courseModel.getCourseECTS());
-            courseModel.setCourseLanguage(courseModel.getCourseLanguage());
-            courseModel.setCourseLearningOutcome(courseModel.getCourseLearningOutcome());
-            courseModel.setCourseMandatory(courseModel.getCourseMandatory());
         }
 
         courseRepo.saveAll(localCoursesList);
