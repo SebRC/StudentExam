@@ -105,4 +105,14 @@ public class StudentModel
     {
         this.courses = courses;
     }
+
+    public Set<Role> getRoles()
+    {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles)
+    {
+        this.roles = roles;
+    }
 }

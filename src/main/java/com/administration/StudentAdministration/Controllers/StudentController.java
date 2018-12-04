@@ -19,4 +19,10 @@ public class StudentController
         studentService.consumeWebService();
         return "Courses/test";
     }
+
+    @GetMapping("/login")
+    public String login()
+    {
+        return "Courses/login";
+    }
 }
