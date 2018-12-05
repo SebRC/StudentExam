@@ -16,6 +16,9 @@ public class StudentController
     @Autowired
     StudentServiceImpl studentService;
 
+    @Autowired
+    CourseServiceImpl courseService;
+
     @GetMapping("/consume")
     public String consume()
     {
@@ -29,6 +32,12 @@ public class StudentController
         return "Courses/login";
     }
 
+    @GetMapping("/course")
+    public String courses(Model model)
+    {
+        model.addAttribute("courses", courseService.getAllCoursesFromDatabase());
 
+        return "Courses/course";
+    }
 
 }
