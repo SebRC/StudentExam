@@ -103,6 +103,6 @@ public class StudentServiceImpl implements StudentService
 
     }
 
-    @Query("select s.username, r.role_name from students s inner join students_roles sr on(s.id=sr.id) inner join roles r on(sr.role_id=r.role_id) where username = " +  )
-    public String getActiveUserRole();
+    //@Query("select s.username, r.role_name from students s inner join students_roles sr on(s.id=sr.id) inner join roles r on(sr.role_id=r.role_id) where username = " +  )
+    //public String getActiveUserRole();
 }
