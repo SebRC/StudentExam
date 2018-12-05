@@ -4,13 +4,17 @@ import com.administration.StudentAdministration.Models.StudentModels.StudentMode
 import com.administration.StudentAdministration.Repositories.RoleRepo;
 import com.administration.StudentAdministration.Repositories.StudentRepo;
 import com.administration.StudentAdministration.Role;
+import com.administration.StudentAdministration.Services.ActiveUserServices.ActiveUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
+import java.security.Principal;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -25,6 +29,9 @@ public class StudentServiceImpl implements StudentService
     private RoleRepo roleRepo;
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private ActiveUserServiceImpl activeUserService;
 
     @Autowired
     public StudentServiceImpl(StudentRepo studentRepo, RoleRepo roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder)
@@ -95,4 +102,7 @@ public class StudentServiceImpl implements StudentService
     {
 
     }
+
+    @Query("select s.username, r.role_name from students s inner join students_roles sr on(s.id=sr.id) inner join roles r on(sr.role_id=r.role_id) where username = " +  )
+    public String getActiveUserRole();
 }

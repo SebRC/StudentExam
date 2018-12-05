@@ -59,8 +59,16 @@
                 <td>Lærerererere</td>
                 <td th:text="${course.courseClassCode}"></td>
                 <td th:text="${course.courseSemester}"></td>
-                <td><a th:href="${'edit?id='+course.courseID}"><button type="button" class="btn btn-success">Rediger</button></a></td>
-                <td><a th:href="${'delete?id='+course.courseID}"><button type="button" class="btn btn-danger">Slet</button></a></td>
+
+                <div th:if="${user.role_name == 'STUDENT'}">
+                    <td><a><button type="button" class="btn btn-success">Tilmeld fag</button></a></td>
+                </div>
+
+                <div th:if="${user.role_name == 'TEACHER'}">
+                    <td><a th:href="${'edit?id='+course.courseID}"><button type="button" class="btn btn-success">Rediger</button></a></td>
+                    <td><a th:href="${'delete?id='+course.courseID}"><button type="button" class="btn btn-danger">Slet</button></a></td>
+                </div>
+
             </tr>
 
             </tbody>
