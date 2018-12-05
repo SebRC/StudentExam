@@ -60,6 +60,8 @@ public class StudentServiceImpl implements StudentService
 
         Role studentRoles = roleRepo.getOne(0);
 
+        System.out.println(studentRoles.getRole_name());
+
         RestTemplate restTemplate = new RestTemplate();
 
         StudentModel[] studentModelsArray = restTemplate.getForObject(devURL, StudentModel[].class);
@@ -72,7 +74,11 @@ public class StudentServiceImpl implements StudentService
 
             studentModel.setEnabled(1);
 
-            studentModel.setRoles(new HashSet<Role>(Arrays.asList(studentRoles)));
+            //studentModel.setRoles(new HashSet<Role>(Arrays.asList(studentRoles)));
+
+            studentModel.setRoles(new HashSet<Role>());
+
+            studentModel.getRoles().add(studentRoles);
         }
 
         studentRepo.saveAll(studentModels);
