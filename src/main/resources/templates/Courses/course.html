@@ -32,7 +32,7 @@
 
         <input class="btn btn-success" type="submit" value="Update"/>
     </form>
-    <form action="/course/consume" method="get">
+    <form action="/teacher/consume" method="get">
 
         <input class="btn btn-danger" type="submit" value="Consume"/>
     </form>
@@ -47,8 +47,15 @@
                 <th scope="col">Lærere</th>
                 <th scope="col">Klassekode</th>
                 <th scope="col">Semester</th>
-                <th scope="col">Rediger</th>
-                <th scope="col">Slet</th>
+                <div th:if="${user.role_name == 'TEACHER'}">
+                    <th scope="col">Rediger</th>
+                    <th scope="col">Slet</th>
+                </div>
+                <div th:if="${user.role_name == 'STUDENT'}">
+                    <th scope="col">Tilmeld fag</th>
+                </div>
+
+
             </tr>
             </thead>
             <tbody>

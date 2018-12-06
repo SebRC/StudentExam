@@ -14,10 +14,24 @@ public class CourseWebModel implements Serializable
     private String description;
     private boolean mandatory;
     private int numberOfTeachers;
-    private String language;
+    private String languange;
 
     public CourseWebModel()
     {
+    }
+
+    public CourseWebModel(int id, int semester, String name, String studyprogramme, String namedanish, String ects, String description, boolean mandatory, int numberOfTeachers, String languange)
+    {
+        this.id = id;
+        this.semester = semester;
+        this.name = name;
+        this.studyprogramme = studyprogramme;
+        this.namedanish = namedanish;
+        this.ects = ects;
+        this.description = description;
+        this.mandatory = mandatory;
+        this.numberOfTeachers = numberOfTeachers;
+        this.languange = languange;
     }
 
     public int getId()
@@ -110,13 +124,13 @@ public class CourseWebModel implements Serializable
         this.numberOfTeachers = numberOfTeachers;
     }
 
-    public String getLanguage()
+    public String getLanguange()
     {
-        return language;
+        return languange;
     }
 
-    public void setLanguage(String language)
+    public void setLanguange(String languange)
     {
-        this.language = language;
+        this.languange = languange;
     }
 }

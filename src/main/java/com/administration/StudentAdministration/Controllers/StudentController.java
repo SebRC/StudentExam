@@ -42,6 +42,16 @@ public class StudentController
         return "Courses/login";
     }
 
+    @PostMapping("/course")
+    public String login(Model model)
+    {
+        model.addAttribute("user", roleRepo.getOne(0));
+
+        model.addAttribute("courses", courseService.getAllCoursesFromDatabase());
+
+        return "Courses/course";
+    }
+
     @GetMapping("/course")
     public String courses(Model model)
     {
@@ -50,37 +60,7 @@ public class StudentController
         System.out.println(roleRepo.getOne(0).getRole_name());
         model.addAttribute("user", roleRepo.getOne(0));
 
-        return "Courses/course";
-    }
 
-    /*
-    @PostMapping("/test")
-    public String courses()
-    {
-
-        return "Courses/test";
-    }
-
-    */
-
-    /*
-    @PostMapping("/course")
-    public String course(Model model)
-    {
-        model.addAttribute("courses", courseService.getAllCoursesFromDatabase());
-        return "Courses/course";
-    }
-    */
-
-    @GetMapping("/test")
-    public String test()
-    {
-        return "Courses/test";
-    }
-
-    @PostMapping("/test")
-    public String test2()
-    {
         return "Courses/course";
     }
 

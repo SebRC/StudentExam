@@ -54,7 +54,7 @@ public class CourseServiceImpl implements CourseService
         {
             CourseModel courseModel = new CourseModel(courseWebModel.getId(), courseWebModel.getNamedanish(), courseWebModel.getName(),
                     courseWebModel.getSemester(), courseWebModel.getStudyprogramme(),
-                    courseWebModel.getEcts(), courseWebModel.getLanguage(), courseWebModel.getDescription(), courseWebModel.isMandatory());
+                    courseWebModel.getEcts(), courseWebModel.getLanguange(), courseWebModel.getDescription(), courseWebModel.isMandatory());
 
 
             localCoursesList.add(courseModel);
@@ -87,7 +87,7 @@ public class CourseServiceImpl implements CourseService
             {
                 CourseModel newCourseModel = new CourseModel(courseWebModel.getId(),
                         courseWebModel.getNamedanish(), courseWebModel.getName(), courseWebModel.getSemester(),
-                        courseWebModel.getStudyprogramme(), courseWebModel.getEcts(), courseWebModel.getLanguage(),
+                        courseWebModel.getStudyprogramme(), courseWebModel.getEcts(), courseWebModel.getLanguange(),
                         courseWebModel.getDescription(), courseWebModel.isMandatory());
 
                 localCoursesList.add(newCourseModel);

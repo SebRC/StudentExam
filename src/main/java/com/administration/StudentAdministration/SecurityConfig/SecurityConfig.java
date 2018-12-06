@@ -48,23 +48,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .antMatchers("/").permitAll()
                 .antMatchers("/student/login").permitAll()
                 .antMatchers("/student/consume").permitAll()
-                .antMatchers("/student/course").hasAuthority("STUDENT").anyRequest()
+                .antMatchers("/student/**").hasAuthority("STUDENT").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
-                .loginPage("/student/login")//failureUrl("/login?error=true")
+                .loginPage("/student/login")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .successForwardUrl("/student/test")
+                .successForwardUrl("/student/course")
                 //.defaultSuccessUrl("/student/course")
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/").and().exceptionHandling()
-                .accessDeniedPage("/access-denied");
+                .accessDeniedPage("/student/course");
     }
 
-    @Override
+    /*@Override
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
                 .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
-    }
+    }*/
 }
