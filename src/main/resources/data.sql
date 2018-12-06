@@ -1,0 +1,2 @@
+REPLACE INTO `roles` VALUES (0,'STUDENT'),
+(1, 'TEACHER');

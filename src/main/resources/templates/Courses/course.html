@@ -19,27 +19,36 @@
 
 
 <div class="sidenav">
+    <h2 th:text="${user}"></h2>
     <a href="#">About</a>
     <a href="#">Services</a>
     <a href="#">Clients</a>
     <a href="#">Contact</a>
+    <form action="/logout" method="get">
+
+        <input class="btn btn-warning" type="submit" value="Logout"/>
+    </form>
 </div>
 
 <div class="main">
     <h2>Fag</h2>
 
-    <form action="/course/update" method="get">
+    <div th:if="${role.role_name == 'TEACHER'}">
+        <form action="/course/update" method="get">
 
-        <input class="btn btn-success" type="submit" value="Update"/>
-    </form>
-    <form action="/push" method="post">
+            <input class="btn btn-success" type="submit" value="Update courses"/>
+        </form>
 
-        <input class="btn btn-success" type="submit" value="push"/>
-    </form>
-    <form action="/teacher/consume" method="get">
+        <form action="/push" method="post">
 
-        <input class="btn btn-danger" type="submit" value="Consume"/>
-    </form>
+            <input class="btn btn-success" type="submit" value="push"/>
+        </form>
+
+        <form action="/teacher/consume" method="get">
+
+            <input class="btn btn-danger" type="submit" value="Consume"/>
+        </form>
+    </div>
 
     <div class="col-md-8">
         <table style="font-size: 15px;" class="table table-hover table-striped table-bordered">
@@ -51,11 +60,11 @@
                 <th scope="col">Lærere</th>
                 <th scope="col">Klassekode</th>
                 <th scope="col">Semester</th>
-                <div th:if="${user.role_name == 'TEACHER'}">
+                <div th:if="${role.role_name == 'TEACHER'}">
                     <th scope="col">Rediger</th>
                     <th scope="col">Slet</th>
                 </div>
-                <div th:if="${user.role_name == 'STUDENT'}">
+                <div th:if="${role.role_name == 'STUDENT'}">
                     <th scope="col">Tilmeld fag</th>
                 </div>
 
@@ -67,15 +76,15 @@
                 <th scope="row" th:text="${course.courseID}"></th>
                 <td th:text="${course.courseNameDanish}"></td>
                 <td th:text="${course.courseNameEnglish}"></td>
-                <td>Lærerererere</td>
+                <td>Lærere</td>
                 <td th:text="${course.courseClassCode}"></td>
                 <td th:text="${course.courseSemester}"></td>
 
-                <div th:if="${user.role_name == 'STUDENT'}">
+                <div th:if="${role.role_name == 'STUDENT'}">
                     <td><a><button type="button" class="btn btn-success">Tilmeld fag</button></a></td>
                 </div>
 
-                <div th:if="${user.role_name == 'TEACHER'}">
+                <div th:if="${role.role_name == 'TEACHER'}">
                     <td><a th:href="${'edit?id='+course.courseID}"><button type="button" class="btn btn-success">Rediger</button></a></td>
                     <td><a th:href="${'delete?id='+course.courseID}"><button type="button" class="btn btn-danger">Slet</button></a></td>
                 </div>

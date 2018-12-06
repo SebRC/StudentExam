@@ -53,12 +53,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .loginPage("/student/login")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .successForwardUrl("/student/course")
-                //.defaultSuccessUrl("/student/course")
+                //.successForwardUrl("/student/course")
+                .defaultSuccessUrl("/student/course", true)
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/").and().exceptionHandling()
-                .accessDeniedPage("/student/course");
+                .logoutSuccessUrl("/student/login").and().exceptionHandling()
+                .accessDeniedPage("/");
     }
 
     /*@Override

@@ -27,13 +27,12 @@ public class StudentController
     @Autowired
     RoleRepo roleRepo;
 
-
-
     @GetMapping("/consume")
     public String consume()
     {
         studentService.consumeWebService();
-        return "Courses/test";
+
+        return "redirect:/student/course";
     }
 
     @GetMapping("/login")
@@ -45,7 +44,7 @@ public class StudentController
     @PostMapping("/course")
     public String login(Model model)
     {
-        model.addAttribute("user", roleRepo.getOne(0));
+        model.addAttribute("role", roleRepo.getOne(0));
 
         model.addAttribute("courses", courseService.getAllCoursesFromDatabase());
 
@@ -53,13 +52,13 @@ public class StudentController
     }
 
     @GetMapping("/course")
-    public String courses(Model model)
+    public String course(Model model, Principal principal)
     {
         model.addAttribute("courses", courseService.getAllCoursesFromDatabase());
 
-        System.out.println(roleRepo.getOne(0).getRole_name());
-        model.addAttribute("user", roleRepo.getOne(0));
+        model.addAttribute("role", roleRepo.getOne(0));
 
+        model.addAttribute("user", principal.getName());
 
         return "Courses/course";
     }

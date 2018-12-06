@@ -27,7 +27,7 @@
     <h2>Edit Course</h2>
 
     <div class="col-md-4">
-        <form th:action="@{/course/edit/} + ${courseModel.courseID}" method="post">
+        <form th:action="@{/teacher/edit/} + ${courseModel.courseID}" method="post">
             <input type="hidden" th:field="${courseModel.courseID}">
 
             <div class="form-group">

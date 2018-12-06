@@ -28,7 +28,7 @@ public class TeacherController
     {
         courseService.consumeWebService();
 
-        return "redirect:/course/";
+        return "redirect:/teacher/course";
     }
 
     @GetMapping("/update")
@@ -36,7 +36,7 @@ public class TeacherController
     {
         courseService.updateFromWebservice();
 
-        return "redirect:/course/";
+        return "redirect:/teacher/course";
     }
 
     //  Course List Page
@@ -45,7 +45,7 @@ public class TeacherController
     {
         model.addAttribute("courses", courseService.getAllCoursesFromDatabase());
 
-        model.addAttribute("user", roleRepo.getOne(1));
+        model.addAttribute("role", roleRepo.getOne(1));
 
         return "Courses/course";
     }
@@ -67,7 +67,7 @@ public class TeacherController
     {
         courseService.save(courseModel);
 
-        return "redirect:/course";
+        return "redirect:/teacher/course";
     }
 
     @GetMapping("/edit")
@@ -84,7 +84,7 @@ public class TeacherController
     {
         courseService.save(courseModel);
 
-        return "redirect:/course/";
+        return "redirect:/teacher/course";
     }
 
     @GetMapping("/delete")
@@ -100,7 +100,7 @@ public class TeacherController
     {
         courseService.deleteFromDatabase(id);
 
-        return "redirect:/course/";
+        return "redirect:/teacher/course";
     }
     //CRUD End
 
