@@ -78,4 +78,10 @@ public class StudentController
         return "Courses/test";
     }
 
+    @PostMapping("/test")
+    public String test2()
+    {
+        return "Courses/course";
+    }
+
 }
