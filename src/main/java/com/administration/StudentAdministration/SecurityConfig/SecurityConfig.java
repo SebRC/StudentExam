@@ -5,12 +5,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
 import javax.sql.DataSource;
 
 @Configuration
@@ -26,19 +24,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     @Value("${spring.queries.students-query}")
     private String studentsQuery;
 
-    @Value("${spring.queries.roles-query}")
-    private String rolesQuery;
+    @Value("${spring.queries.teachers-query}")
+    private String teachersQuery;
+
+    @Value("${spring.queries.studentsRoles-query}")
+    private String studentsRolesQuery;
+
+    @Value("${spring.queries.teachersRoles-query}")
+    private String teachersRolesQuery;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         auth.
                 jdbcAuthentication()
-                .usersByUsernameQuery(studentsQuery)
-                .authoritiesByUsernameQuery(rolesQuery)
+                .usersByUsernameQuery(teachersQuery)
+                .authoritiesByUsernameQuery(teachersRolesQuery)
                 .dataSource(dataSource)
                 .passwordEncoder(bCryptPasswordEncoder);
+
     }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -46,18 +52,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
         http.
                 authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/student/login").permitAll()
+                .antMatchers("/admin/consume").permitAll()
+                .antMatchers("/teacher/consumeTeachers").permitAll()
+                .antMatchers("/home/login").permitAll()
                 .antMatchers("/student/consume").permitAll()
-                .antMatchers("/student/**").hasAuthority("STUDENT").anyRequest()
+                .antMatchers("/student/**").hasAuthority("STUDENT")
+                .antMatchers("/teacher/**").hasAuthority("TEACHER")
+                .anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
-                .loginPage("/student/login")
+                .loginPage("/home/login")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/student/course", true)
+                //.defaultSuccessUrl("/student/course", true)
+                .defaultSuccessUrl("/teacher/course", true)
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/student/login").and().exceptionHandling()
-                .accessDeniedPage("/");
+                .logoutSuccessUrl("/home/login").and().exceptionHandling()
+                .accessDeniedPage("/home");
+
     }
 
     /*@Override

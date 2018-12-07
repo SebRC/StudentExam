@@ -131,7 +131,7 @@
                 <div>
                     <select multiple class="form-control" th:field="${courseModel.teachers}">
                         <option th:each="teacherModel : ${teachers}"
-                                th:value="${teacherModel.teacherID}"
+                                th:value="${teacherModel.id}"
                                 th:text="${teacherModel.teacherName}">
 
                         </option>

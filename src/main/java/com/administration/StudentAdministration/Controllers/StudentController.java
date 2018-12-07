@@ -35,12 +35,6 @@ public class StudentController
         return "redirect:/student/course";
     }
 
-    @GetMapping("/login")
-    public String login()
-    {
-        return "Courses/login";
-    }
-
     @GetMapping("/course")
     public String course(Model model, Principal principal)
     {

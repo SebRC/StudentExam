@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebMVCConfig implements WebMvcConfigurer
 {
 
+    //responsible for hashing passwords
     @Bean
     public BCryptPasswordEncoder passwordEncoder()
     {

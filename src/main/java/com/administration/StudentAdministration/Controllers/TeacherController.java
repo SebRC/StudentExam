@@ -31,6 +31,14 @@ public class TeacherController
         return "redirect:/teacher/course";
     }
 
+    @GetMapping("/consumeTeachers")
+    public String consumeTeacher()
+    {
+        teacherService.consumeWebService();
+
+        return "redirect:/teacher/course";
+    }
+
     @GetMapping("/update")
     public String updateFromWebservice()
     {
