@@ -53,7 +53,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .loginPage("/student/login")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                //.successForwardUrl("/student/course")
                 .defaultSuccessUrl("/student/course", true)
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

@@ -41,16 +41,6 @@ public class StudentController
         return "Courses/login";
     }
 
-    @PostMapping("/course")
-    public String login(Model model)
-    {
-        model.addAttribute("role", roleRepo.getOne(0));
-
-        model.addAttribute("courses", courseService.getAllCoursesFromDatabase());
-
-        return "Courses/course";
-    }
-
     @GetMapping("/course")
     public String course(Model model, Principal principal)
     {
