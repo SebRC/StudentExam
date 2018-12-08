@@ -41,6 +41,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .usersByUsernameQuery(teachersQuery)
                 .authoritiesByUsernameQuery(teachersRolesQuery)
                 .dataSource(dataSource)
+                .passwordEncoder(bCryptPasswordEncoder)
+                .and().jdbcAuthentication()
+                .usersByUsernameQuery(studentsQuery)
+                .authoritiesByUsernameQuery(studentsRolesQuery)
+                .dataSource(dataSource)
                 .passwordEncoder(bCryptPasswordEncoder);
 
     }
