@@ -16,17 +16,6 @@ import java.security.Principal;
 public class HomeController
 {
 
-
-    @Autowired
-    StudentServiceImpl studentService;
-
-    @Autowired
-    CourseServiceImpl courseService;
-
-    @Autowired
-    RoleRepo roleRepo;
-
-
     @GetMapping
     public String homepage()
     {
