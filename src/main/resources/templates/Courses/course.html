@@ -12,23 +12,11 @@
 
     <!-- custom css -->
 
-
-
 </head>
 <body>
 
+<div th:include="/Courses/menu.html"></div>
 
-<div class="sidenav">
-    <h2 th:text="${user}"></h2>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
-    <form action="/logout" method="get">
-
-        <input class="btn btn-warning" type="submit" value="Logout"/>
-    </form>
-</div>
 
 <div class="main">
     <h2>Fag</h2>
@@ -48,6 +36,8 @@
             <input class="btn btn-danger" type="submit" value="Consume"/>
         </form>
     </div>
+
+    <br>
 
     <div class="col-md-8">
         <table style="font-size: 15px;" class="table table-hover table-striped table-bordered">

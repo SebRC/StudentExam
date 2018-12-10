@@ -42,7 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .authoritiesByUsernameQuery(teachersRolesQuery)
                 .dataSource(dataSource)
                 .passwordEncoder(bCryptPasswordEncoder)
-                .and().jdbcAuthentication()
+                .and()
+                .jdbcAuthentication()
                 .usersByUsernameQuery(studentsQuery)
                 .authoritiesByUsernameQuery(studentsRolesQuery)
                 .dataSource(dataSource)
@@ -58,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/admin/consume").permitAll()
-                .antMatchers("/teacher/consumeTeachers").permitAll()
+                //.antMatchers("/teacher/consumeTeachers").permitAll()
                 .antMatchers("/home/login").permitAll()
                 .antMatchers("/student/consume").permitAll()
                 .antMatchers("/student/**").hasAuthority("STUDENT")
@@ -69,11 +70,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .usernameParameter("username")
                 .passwordParameter("password")
                 //.defaultSuccessUrl("/student/course", true)
-                .defaultSuccessUrl("/teacher/course", true)
+                .defaultSuccessUrl("/home/frontpage", true)
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/home/login").and().exceptionHandling()
-                .accessDeniedPage("/home");
+                .accessDeniedPage("/home/denied");
 
     }
 

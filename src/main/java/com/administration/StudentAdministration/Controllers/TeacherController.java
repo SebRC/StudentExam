@@ -67,6 +67,8 @@ public class TeacherController
 
         model.addAttribute("teachers", teacherService.getAllTeachersFromDatabase());
 
+        model.addAttribute("role", roleRepo.getOne(1));
+
         return "Courses/create";
     }
 
@@ -82,6 +84,10 @@ public class TeacherController
     public String editCourse(@RequestParam ("id") int id, Model model)
     {
         model.addAttribute("courseModel", courseService.findOne(id));
+
+        model.addAttribute("teachers", teacherService.getAllTeachersFromDatabase());
+
+        model.addAttribute("role", roleRepo.getOne(1));
 
         return "Courses/edit";
     }
@@ -99,6 +105,9 @@ public class TeacherController
     public String deleteCourse(@RequestParam ("id") int id, Model model)
     {
         model.addAttribute("courseModel", courseService.findOne(id));
+
+        model.addAttribute("role", roleRepo.getOne(1));
+
 
         return "Courses/delete";
     }

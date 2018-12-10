@@ -1,0 +1,13 @@
+<div class="sidenav">
+    <div th:if="${role.role_name == 'TEACHER'}">
+        <a href="/teacher/create">Create Course</a>
+    </div>
+
+    <div th:if="${role.role_name == 'STUDENT'}">
+        <a href="#">My Courses</a>
+
+        <a href="#">Search Course</a>
+    </div>
+
+    <a href="/logout"><input class="btn btn-warning" type="submit" value="Logout"/></a>
+</div>
