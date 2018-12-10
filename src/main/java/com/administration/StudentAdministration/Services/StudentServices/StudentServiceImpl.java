@@ -3,18 +3,15 @@ package com.administration.StudentAdministration.Services.StudentServices;
 import com.administration.StudentAdministration.Models.StudentModels.StudentModel;
 import com.administration.StudentAdministration.Repositories.RoleRepo;
 import com.administration.StudentAdministration.Repositories.StudentRepo;
-import com.administration.StudentAdministration.Role;
+import com.administration.StudentAdministration.Models.Role;
 import com.administration.StudentAdministration.Services.ActiveUserServices.ActiveUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
-import java.security.Principal;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;

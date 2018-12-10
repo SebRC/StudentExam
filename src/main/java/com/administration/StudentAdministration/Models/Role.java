@@ -1,4 +1,4 @@
-package com.administration.StudentAdministration;
+package com.administration.StudentAdministration.Models;
 
 import lombok.Data;
 

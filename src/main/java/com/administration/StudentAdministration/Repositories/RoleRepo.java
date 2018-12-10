@@ -1,10 +1,7 @@
 package com.administration.StudentAdministration.Repositories;
 
-import com.administration.StudentAdministration.Role;
-import com.administration.StudentAdministration.Services.ActiveUserServices.ActiveUserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.administration.StudentAdministration.Models.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository

@@ -1,7 +1,7 @@
 package com.administration.StudentAdministration.Models.TeacherModels;
 
 import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
-import com.administration.StudentAdministration.Role;
+import com.administration.StudentAdministration.Models.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

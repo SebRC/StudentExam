@@ -1,18 +1,16 @@
 package com.administration.StudentAdministration.Services.TeacherServices;
 
-import com.administration.StudentAdministration.Models.StudentModels.StudentModel;
 import com.administration.StudentAdministration.Models.TeacherModels.TeacherWebModel;
 import com.administration.StudentAdministration.Models.TeacherModels.TeacherModel;
 import com.administration.StudentAdministration.Repositories.RoleRepo;
 import com.administration.StudentAdministration.Repositories.TeacherRepo;
-import com.administration.StudentAdministration.Role;
+import com.administration.StudentAdministration.Models.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
