@@ -1,7 +1,7 @@
 package com.administration.StudentAdministration.Models.TeacherModels;
 
 import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
-import com.administration.StudentAdministration.Models.Role;
+import com.administration.StudentAdministration.Models.RoleModel;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -33,7 +33,7 @@ public class TeacherModel
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "teachers_roles", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    private Set<RoleModel> roles;
 
 
     public TeacherModel(){}
@@ -116,12 +116,12 @@ public class TeacherModel
         this.password = password;
     }
 
-    public Set<Role> getRoles()
+    public Set<RoleModel> getRoles()
     {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles)
+    public void setRoles(Set<RoleModel> roles)
     {
         this.roles = roles;
     }

@@ -1,7 +1,7 @@
 package com.administration.StudentAdministration.Models.StudentModels;
 
 import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
-import com.administration.StudentAdministration.Models.Role;
+import com.administration.StudentAdministration.Models.RoleModel;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -31,7 +31,7 @@ public class StudentModel
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "students_roles", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    private Set<RoleModel> roles;
 
 
     public StudentModel(){}
@@ -107,12 +107,12 @@ public class StudentModel
         this.courses = courses;
     }
 
-    public Set<Role> getRoles()
+    public Set<RoleModel> getRoles()
     {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles)
+    public void setRoles(Set<RoleModel> roles)
     {
         this.roles = roles;
     }

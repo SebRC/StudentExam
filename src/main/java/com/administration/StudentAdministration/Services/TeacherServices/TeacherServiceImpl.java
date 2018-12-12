@@ -1,10 +1,10 @@
 package com.administration.StudentAdministration.Services.TeacherServices;
 
+import com.administration.StudentAdministration.Models.RoleModel;
 import com.administration.StudentAdministration.Models.TeacherModels.TeacherWebModel;
 import com.administration.StudentAdministration.Models.TeacherModels.TeacherModel;
 import com.administration.StudentAdministration.Repositories.RoleRepo;
 import com.administration.StudentAdministration.Repositories.TeacherRepo;
-import com.administration.StudentAdministration.Models.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -57,7 +57,7 @@ public class TeacherServiceImpl implements TeacherService
     {
         String devURL = "http://18.185.40.91/teacher";
 
-        Role teacherRoles = roleRepo.getOne(1);
+        RoleModel teacherRoles = roleRepo.getOne(1);
 
         RestTemplate restTemplate = new RestTemplate();
 

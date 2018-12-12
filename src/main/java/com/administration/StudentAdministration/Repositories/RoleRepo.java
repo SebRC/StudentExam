@@ -1,14 +1,14 @@
 package com.administration.StudentAdministration.Repositories;
 
-import com.administration.StudentAdministration.Models.Role;
+import com.administration.StudentAdministration.Models.RoleModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoleRepo extends JpaRepository<Role, Integer>
+public interface RoleRepo extends JpaRepository<RoleModel, Integer>
 {
-    //Role findByRole_name(String role_name);
+    //RoleModel findByRole_name(String role_name);
 
-    //Role findRoleByRole_name(String roleName);
+    //RoleModel findRoleByRole_name(String roleName);
 
 }

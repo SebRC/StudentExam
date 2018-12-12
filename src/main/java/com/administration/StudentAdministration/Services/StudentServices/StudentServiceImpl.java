@@ -1,9 +1,9 @@
 package com.administration.StudentAdministration.Services.StudentServices;
 
+import com.administration.StudentAdministration.Models.RoleModel;
 import com.administration.StudentAdministration.Models.StudentModels.StudentModel;
 import com.administration.StudentAdministration.Repositories.RoleRepo;
 import com.administration.StudentAdministration.Repositories.StudentRepo;
-import com.administration.StudentAdministration.Models.Role;
 import com.administration.StudentAdministration.Services.ActiveUserServices.ActiveUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,7 +62,7 @@ public class StudentServiceImpl implements StudentService
     {
         String devURL = "http://18.185.40.91/student";
 
-        Role studentRoles = roleRepo.getOne(0);
+        RoleModel studentRoles = roleRepo.getOne(0);
 
         System.out.println(studentRoles.getRole_name());
 
@@ -78,9 +78,9 @@ public class StudentServiceImpl implements StudentService
 
             studentModel.setEnabled(1);
 
-            //studentModel.setRoles(new HashSet<Role>(Arrays.asList(studentRoles)));
+            //studentModel.setRoles(new HashSet<RoleModel>(Arrays.asList(studentRoles)));
 
-            studentModel.setRoles(new HashSet<Role>());
+            studentModel.setRoles(new HashSet<RoleModel>());
 
             studentModel.getRoles().add(studentRoles);
         }
