@@ -42,8 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth)
-            throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception
+    {
         auth.
                 jdbcAuthentication()
                 .usersByUsernameQuery(teachersQuery)
@@ -73,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/admin/consume").permitAll()
-                .antMatchers("/push").permitAll()
+                //.antMatchers("/push").permitAll()
                 .antMatchers("/admin/test").permitAll()
                 .antMatchers("/home/login").permitAll()
                 .antMatchers("/student/**").hasAuthority("STUDENT")
