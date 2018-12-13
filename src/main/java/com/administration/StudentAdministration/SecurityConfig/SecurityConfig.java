@@ -27,11 +27,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     @Value("${spring.queries.teachers-query}")
     private String teachersQuery;
 
+    @Value("${spring.queries.admins-query}")
+    private String adminsQuery;
+
     @Value("${spring.queries.studentsRoles-query}")
     private String studentsRolesQuery;
 
     @Value("${spring.queries.teachersRoles-query}")
     private String teachersRolesQuery;
+
+    @Value("${spring.queries.adminsRoles-query}")
+    private String adminsRolesQuery;
+
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
@@ -47,6 +55,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .usersByUsernameQuery(studentsQuery)
                 .authoritiesByUsernameQuery(studentsRolesQuery)
                 .dataSource(dataSource)
+                .passwordEncoder(bCryptPasswordEncoder)
+                .and()
+                .jdbcAuthentication()
+                .usersByUsernameQuery(adminsQuery)
+                .authoritiesByUsernameQuery(adminsRolesQuery)
+                .dataSource(dataSource)
                 .passwordEncoder(bCryptPasswordEncoder);
 
     }
@@ -60,17 +74,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .antMatchers("/").permitAll()
                 .antMatchers("/admin/consume").permitAll()
                 .antMatchers("/push").permitAll()
-                //.antMatchers("/teacher/consumeTeachers").permitAll()
+                .antMatchers("/admin/test").permitAll()
                 .antMatchers("/home/login").permitAll()
-                .antMatchers("/student/consume").permitAll()
                 .antMatchers("/student/**").hasAuthority("STUDENT")
                 .antMatchers("/teacher/**").hasAuthority("TEACHER")
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/home/login")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                //.defaultSuccessUrl("/student/course", true)
                 .defaultSuccessUrl("/home/frontpage", true)
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

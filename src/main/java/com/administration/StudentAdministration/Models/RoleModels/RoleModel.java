@@ -1,4 +1,4 @@
-package com.administration.StudentAdministration.Models;
+package com.administration.StudentAdministration.Models.RoleModels;
 
 import lombok.Data;
 

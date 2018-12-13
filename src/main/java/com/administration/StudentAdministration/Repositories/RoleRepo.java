@@ -1,6 +1,6 @@
 package com.administration.StudentAdministration.Repositories;
 
-import com.administration.StudentAdministration.Models.RoleModel;
+import com.administration.StudentAdministration.Models.RoleModels.RoleModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

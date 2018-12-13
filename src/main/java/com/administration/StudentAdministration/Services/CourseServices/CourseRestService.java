@@ -18,9 +18,8 @@ public class CourseRestService
 
         RestTemplate restTemplate = new RestTemplate();
 
-        restTemplate.postForLocation(devURL, new CourseWebModel(0,1,"jackies test","","","","",true,1,""));
-
-
+        restTemplate.postForLocation(devURL, new CourseWebModel(0,1,"jackies test",
+                "","","","",true,1,""));
 
     }
 }

@@ -1,7 +1,7 @@
 package com.administration.StudentAdministration.Models.TeacherModels;
 
 import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
-import com.administration.StudentAdministration.Models.RoleModel;
+import com.administration.StudentAdministration.Models.RoleModels.RoleModel;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -14,12 +14,15 @@ public class TeacherModel
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @Column(name = "id")
+    private int teacherID;
     private String teacherName;
     @Email
     private String teacherEmail;
-    private String username;
-    private String password;
+    @Column(name = "username")
+    private String teacherUsername;
+    @Column(name = "password")
+    private String teacherPassword;
     private int enabled;
 
     @ManyToMany(fetch = FetchType.LAZY,
@@ -38,17 +41,13 @@ public class TeacherModel
 
     public TeacherModel(){}
 
-    public TeacherModel(String teacherName, String teacherEmail, String userName, String password)
+    public TeacherModel(String teacherName, @Email String teacherEmail, String teacherUsername, String teacherPassword, int enabled)
     {
         this.teacherName = teacherName;
         this.teacherEmail = teacherEmail;
-        this.username = userName;
-        this.password = password;
-    }
-
-    public int getId()
-    {
-        return id;
+        this.teacherUsername = teacherUsername;
+        this.teacherPassword = teacherPassword;
+        this.enabled = enabled;
     }
 
     public int getEnabled()
@@ -61,10 +60,6 @@ public class TeacherModel
         this.enabled = enabled;
     }
 
-    public void setId(int id)
-    {
-        this.id = id;
-    }
 
     public String getTeacherName()
     {
@@ -96,26 +91,6 @@ public class TeacherModel
         this.courses = courses;
     }
 
-    public String getUsername()
-    {
-        return username;
-    }
-
-    public void setUsername(String username)
-    {
-        this.username = username;
-    }
-
-    public String getPassword()
-    {
-        return password;
-    }
-
-    public void setPassword(String password)
-    {
-        this.password = password;
-    }
-
     public Set<RoleModel> getRoles()
     {
         return roles;
@@ -124,5 +99,35 @@ public class TeacherModel
     public void setRoles(Set<RoleModel> roles)
     {
         this.roles = roles;
+    }
+
+    public int getTeacherID()
+    {
+        return teacherID;
+    }
+
+    public void setTeacherID(int teacherID)
+    {
+        this.teacherID = teacherID;
+    }
+
+    public String getTeacherUsername()
+    {
+        return teacherUsername;
+    }
+
+    public void setTeacherUsername(String teacherUsername)
+    {
+        this.teacherUsername = teacherUsername;
+    }
+
+    public String getTeacherPassword()
+    {
+        return teacherPassword;
+    }
+
+    public void setTeacherPassword(String teacherPassword)
+    {
+        this.teacherPassword = teacherPassword;
     }
 }

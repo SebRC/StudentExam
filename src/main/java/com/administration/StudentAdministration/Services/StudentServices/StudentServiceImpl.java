@@ -1,6 +1,6 @@
 package com.administration.StudentAdministration.Services.StudentServices;
 
-import com.administration.StudentAdministration.Models.RoleModel;
+import com.administration.StudentAdministration.Models.RoleModels.RoleModel;
 import com.administration.StudentAdministration.Models.StudentModels.StudentModel;
 import com.administration.StudentAdministration.Repositories.RoleRepo;
 import com.administration.StudentAdministration.Repositories.StudentRepo;
@@ -62,10 +62,6 @@ public class StudentServiceImpl implements StudentService
     {
         String devURL = "http://18.185.40.91/student";
 
-        RoleModel studentRoles = roleRepo.getOne(0);
-
-        System.out.println(studentRoles.getRole_name());
-
         RestTemplate restTemplate = new RestTemplate();
 
         StudentModel[] studentModelsArray = restTemplate.getForObject(devURL, StudentModel[].class);
@@ -82,7 +78,7 @@ public class StudentServiceImpl implements StudentService
 
             studentModel.setRoles(new HashSet<RoleModel>());
 
-            studentModel.getRoles().add(studentRoles);
+            studentModel.getRoles().add(roleRepo.getOne(0));
         }
 
         studentRepo.saveAll(studentModels);

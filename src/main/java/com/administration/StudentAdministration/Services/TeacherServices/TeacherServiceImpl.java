@@ -1,6 +1,6 @@
 package com.administration.StudentAdministration.Services.TeacherServices;
 
-import com.administration.StudentAdministration.Models.RoleModel;
+import com.administration.StudentAdministration.Models.RoleModels.RoleModel;
 import com.administration.StudentAdministration.Models.TeacherModels.TeacherWebModel;
 import com.administration.StudentAdministration.Models.TeacherModels.TeacherModel;
 import com.administration.StudentAdministration.Repositories.RoleRepo;
@@ -57,8 +57,6 @@ public class TeacherServiceImpl implements TeacherService
     {
         String devURL = "http://18.185.40.91/teacher";
 
-        RoleModel teacherRoles = roleRepo.getOne(1);
-
         RestTemplate restTemplate = new RestTemplate();
 
         TeacherWebModel[] teacherWebModelsArrray = restTemplate.getForObject(devURL, TeacherWebModel[].class);
@@ -67,14 +65,12 @@ public class TeacherServiceImpl implements TeacherService
 
         for (TeacherWebModel teacherWebModel: teacherWebModelsArrray)
         {
-            TeacherModel teacherModel = new TeacherModel(/*teacherWebModel.getId(),*/ teacherWebModel.getName(), teacherWebModel.getEmail(),
-                    teacherWebModel.getEmail(), bCryptPasswordEncoder.encode("1234"));
+            TeacherModel teacherModel = new TeacherModel(teacherWebModel.getName(), teacherWebModel.getEmail(),
+                    teacherWebModel.getEmail(), bCryptPasswordEncoder.encode("1234"), 1);
 
             teacherModel.setRoles(new HashSet<>());
 
-            teacherModel.getRoles().add(teacherRoles);
-
-            teacherModel.setEnabled(1);
+            teacherModel.getRoles().add(roleRepo.getOne(1));
 
             localTeacherList.add(teacherModel);
         }

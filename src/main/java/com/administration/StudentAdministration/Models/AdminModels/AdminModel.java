@@ -1,18 +1,36 @@
 package com.administration.StudentAdministration.Models.AdminModels;
 
+import com.administration.StudentAdministration.Models.RoleModels.RoleModel;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "Administrators")
+@Table(name = "Admins")
 public class AdminModel
 {
+    @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int adminID;
+    @Column(name = "username")
     private String adminUsername;
+    @Column(name = "password")
     private String adminPassword;
+    private int enabled;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "admins_roles", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleModel> roles;
 
     public AdminModel(){}
+
+    public AdminModel(String adminUsername, String adminPassword, int enabled)
+    {
+        this.adminUsername = adminUsername;
+        this.adminPassword = adminPassword;
+        this.enabled = enabled;
+    }
 
     public int getAdminID()
     {
@@ -42,5 +60,25 @@ public class AdminModel
     public void setAdminPassword(String adminPassword)
     {
         this.adminPassword = adminPassword;
+    }
+
+    public int getEnabled()
+    {
+        return enabled;
+    }
+
+    public void setEnabled(int enabled)
+    {
+        this.enabled = enabled;
+    }
+
+    public Set<RoleModel> getRoles()
+    {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleModel> roles)
+    {
+        this.roles = roles;
     }
 }

@@ -80,6 +80,8 @@ public class TeacherController
         return "redirect:/teacher/course";
     }
 
+
+
     @GetMapping("/edit")
     public String editCourse(@RequestParam ("id") int id, Model model)
     {

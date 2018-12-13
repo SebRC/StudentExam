@@ -1,7 +1,7 @@
 package com.administration.StudentAdministration.Models.StudentModels;
 
 import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
-import com.administration.StudentAdministration.Models.RoleModel;
+import com.administration.StudentAdministration.Models.RoleModels.RoleModel;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -26,8 +26,8 @@ public class StudentModel
                     CascadeType.MERGE
             },
             mappedBy = "students")
-
     private Set<CourseModel> courses = new HashSet<>();
+
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "students_roles", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "role_id"))

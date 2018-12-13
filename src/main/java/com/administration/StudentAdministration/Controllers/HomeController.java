@@ -28,13 +28,11 @@ public class HomeController
         return "Courses/login";
     }
 
-
     @GetMapping("/frontpage")
     public String frontpage()
     {
         return "Courses/frontpage";
     }
-
 
     @GetMapping("/denied")
     public String denied()

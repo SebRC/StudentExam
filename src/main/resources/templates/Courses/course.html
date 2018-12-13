@@ -20,6 +20,9 @@
 
 <div class="main">
     <h2>Fag</h2>
+    <div th:if="${role.role_name == 'ADMIN'}">
+        <h2>Du er admin</h2>
+    </div>
 
     <div th:if="${role.role_name == 'TEACHER'}">
         <form action="/course/update" method="get">
