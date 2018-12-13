@@ -2,12 +2,12 @@ package com.administration.StudentAdministration.Models.TeacherModels;
 
 import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
 import com.administration.StudentAdministration.Models.RoleModels.RoleModel;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.HashSet;
 import java.util.Set;
 
+//model representing teachers in our system
 @Entity
 @Table(name = "Teachers")
 public class TeacherModel
@@ -25,23 +25,28 @@ public class TeacherModel
     private String teacherPassword;
     private int enabled;
 
+    //relation between students and courses
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
+            cascade =
+                    {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
-            },
+                    },
             mappedBy = "teachers")
-
     private Set<CourseModel> courses = new HashSet<>();
 
+    //junction table representing relation between teachers and roles
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "teachers_roles", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "teachers_roles", joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleModel> roles;
 
-
+    //empty constructor for spring and JPA purposess
     public TeacherModel(){}
 
-    public TeacherModel(String teacherName, @Email String teacherEmail, String teacherUsername, String teacherPassword, int enabled)
+    //constructor used when retreiving data from webservice
+    public TeacherModel(String teacherName, @Email String teacherEmail,
+                        String teacherUsername, String teacherPassword, int enabled)
     {
         this.teacherName = teacherName;
         this.teacherEmail = teacherEmail;

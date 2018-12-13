@@ -1,25 +1,23 @@
 package com.administration.StudentAdministration.Controllers;
 
-import com.administration.StudentAdministration.Models.CourseModels.CourseWebModel;
-import com.administration.StudentAdministration.Services.CourseServices.CourseRestService;
+import com.administration.StudentAdministration.Services.CourseServices.CourseRestServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+//controller meant to be used for pushing data to webservice
+//not yet working
 @RestController
 public class RESTController
 {
     @Autowired
-    private CourseRestService courseRestService;
+    private CourseRestServiceImpl courseRestServiceImpl;
 
-
-
+    //postmapping used to try and push to webservice
     @PostMapping("/push")
     public String pushToWeb()
     {
-        courseRestService.addCourseToLegacy();
+        courseRestServiceImpl.addCourseToLegacy();
 
         return "Courses/course";
     }

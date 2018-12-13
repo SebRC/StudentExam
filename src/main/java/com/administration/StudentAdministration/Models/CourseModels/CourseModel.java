@@ -2,7 +2,6 @@ package com.administration.StudentAdministration.Models.CourseModels;
 
 import com.administration.StudentAdministration.Models.StudentModels.StudentModel;
 import com.administration.StudentAdministration.Models.TeacherModels.TeacherModel;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -33,37 +32,53 @@ public class CourseModel implements Serializable
     private String courseExamForm;
     private int courseMandatory;
 
+    //junction table representing relation between courses and teachers
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
+            cascade =
+                    {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
-            })
+                    })
     @JoinTable(name = "courses_teachers",
-            joinColumns = { @JoinColumn(name = "courseid") },
-            inverseJoinColumns = { @JoinColumn(name = "teacherid") })
+            joinColumns =
+                    {
+                            @JoinColumn(name = "courseid")
+                    },
+            inverseJoinColumns =
+                    {
+                            @JoinColumn(name = "teacherid")
+                    })
     private Set<TeacherModel> teachers = new HashSet<>();
 
-
-
-
+    //junction table representing relation between courses and students
+    //TODO: implement functionality of student signing up for a course
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
+            cascade =
+                    {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
-            })
+                    })
     @JoinTable(name = "courses_students",
-            joinColumns = { @JoinColumn(name = "courseid") },
-            inverseJoinColumns = { @JoinColumn(name = "studentid") })
+            joinColumns =
+                    {
+                            @JoinColumn(name = "courseid")
+                    },
+            inverseJoinColumns =
+                    {
+                            @JoinColumn(name = "studentid")
+                    })
     private Set<StudentModel> students = new HashSet<>();
 
 
 
 
-    //  Empty constructor for Spring purposes
+    //  Empty constructor for Spring and JPA purposes
     public CourseModel(){}
 
-    //  Actual constructor used for saving to datab
-    public CourseModel(int courseID, String courseNameDanish, String courseNameEnglish, int courseSemester, String courseStudyProgramme, String courseECTS, String courseLanguage,
+    //  Actual constructor used for saving to database
+    public CourseModel(int courseID, String courseNameDanish, String courseNameEnglish,
+                       int courseSemester, String courseStudyProgramme,
+                       String courseECTS, String courseLanguage,
                        String courseLearningOutcome, boolean isMandatory)
     {
         this.courseID = courseID;

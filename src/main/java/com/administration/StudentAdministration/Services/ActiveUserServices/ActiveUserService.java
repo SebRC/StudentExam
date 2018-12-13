@@ -1,9 +1,6 @@
 package com.administration.StudentAdministration.Services.ActiveUserServices;
 
-import java.security.Principal;
-
-
+//interface for service used for retrieving details about active user from database
 public interface ActiveUserService
 {
-    Principal getActiveUserRole(Principal principal);
 }

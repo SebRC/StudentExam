@@ -22,7 +22,7 @@
     <h2>Opret Fag</h2>
 
     <div class="col-md-4">
-        <form th:action="@{/course/edit/} + ${courseModel.courseID}" method="post">
+        <form th:action="@{/teacher/create}" method="post">
             <input type="hidden" th:field="${courseModel.courseID}">
 
             <div class="form-group">
@@ -55,7 +55,7 @@
             </div>
 
             <div class="form-group">
-                <label>Stutdieretning</label>
+                <label>Studieretning</label>
                 <input type="text" class="form-control" th:field="${courseModel.courseStudyProgramme}">
             </div>
 
@@ -126,7 +126,7 @@
                 <div>
                     <select multiple class="form-control" th:field="${courseModel.teachers}">
                         <option th:each="teacherModel : ${teachers}"
-                                th:value="${teacherModel.id}"
+                                th:value="${teacherModel.teacherID}"
                                 th:text="${teacherModel.teacherName}">
 
                         </option>

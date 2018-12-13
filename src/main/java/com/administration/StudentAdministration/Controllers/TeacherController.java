@@ -1,18 +1,20 @@
 package com.administration.StudentAdministration.Controllers;
 
 import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
-import com.administration.StudentAdministration.Repositories.RoleRepo;
 import com.administration.StudentAdministration.Services.CourseServices.CourseServiceImpl;
+import com.administration.StudentAdministration.Services.RoleServices.RoleServiceImpl;
 import com.administration.StudentAdministration.Services.TeacherServices.TeacherServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+//controller used for directing teachers to different pages on the website
 @RequestMapping("/teacher")
 @Controller
 public class TeacherController
 {
+    //services needed to get data from database
     @Autowired
     private CourseServiceImpl courseService;
 
@@ -20,9 +22,9 @@ public class TeacherController
     private TeacherServiceImpl teacherService;
 
     @Autowired
-    private RoleRepo roleRepo;
+    private RoleServiceImpl roleService;
 
-
+    //getmapping for consuming teacher data from webservice
     @GetMapping("/consume")
     public String consumeWebservice()
     {
@@ -31,14 +33,7 @@ public class TeacherController
         return "redirect:/teacher/course";
     }
 
-    @GetMapping("/consumeTeachers")
-    public String consumeTeacher()
-    {
-        teacherService.consumeWebService();
-
-        return "redirect:/teacher/course";
-    }
-
+    //getmapping for updating teachers in database with data from webservice
     @GetMapping("/update")
     public String updateFromWebservice()
     {
@@ -53,7 +48,7 @@ public class TeacherController
     {
         model.addAttribute("courses", courseService.getAllCoursesFromDatabase());
 
-        model.addAttribute("role", roleRepo.getOne(1));
+        model.addAttribute("role", roleService.findOne(1));
 
         return "Courses/course";
     }
@@ -67,7 +62,7 @@ public class TeacherController
 
         model.addAttribute("teachers", teacherService.getAllTeachersFromDatabase());
 
-        model.addAttribute("role", roleRepo.getOne(1));
+        model.addAttribute("role", roleService.findOne(1));
 
         return "Courses/create";
     }
@@ -89,7 +84,7 @@ public class TeacherController
 
         model.addAttribute("teachers", teacherService.getAllTeachersFromDatabase());
 
-        model.addAttribute("role", roleRepo.getOne(1));
+        model.addAttribute("role", roleService.findOne(1));
 
         return "Courses/edit";
     }
@@ -108,7 +103,7 @@ public class TeacherController
     {
         model.addAttribute("courseModel", courseService.findOne(id));
 
-        model.addAttribute("role", roleRepo.getOne(1));
+        model.addAttribute("role", roleService.findOne(1));
 
 
         return "Courses/delete";

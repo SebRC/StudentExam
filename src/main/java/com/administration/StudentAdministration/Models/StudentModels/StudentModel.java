@@ -2,11 +2,11 @@ package com.administration.StudentAdministration.Models.StudentModels;
 
 import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
 import com.administration.StudentAdministration.Models.RoleModels.RoleModel;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+//model representing a student in both the webservice and our database
 @Entity
 @Table(name = "Students")
 public class StudentModel
@@ -20,20 +20,23 @@ public class StudentModel
     private String password;
     private int enabled;
 
+    //relation between students and courses
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
+            cascade =
+                    {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
-            },
+                    },
             mappedBy = "students")
     private Set<CourseModel> courses = new HashSet<>();
 
-
+    //junction table representing relation between students and roles
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "students_roles", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "students_roles", joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleModel> roles;
 
-
+    //empty constructor for spring and JPA purposes
     public StudentModel(){}
 
     public int getId()

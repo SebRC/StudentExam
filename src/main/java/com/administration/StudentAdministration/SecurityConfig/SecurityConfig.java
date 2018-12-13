@@ -11,16 +11,20 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import javax.sql.DataSource;
 
+//class used for configurating the security details of application
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
+    //password encoder used to hash passwords
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    //datasource
     @Autowired
     private DataSource dataSource;
 
+    //queries used to get usernames, passwords enabled status and roles
     @Value("${spring.queries.students-query}")
     private String studentsQuery;
 
@@ -39,8 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     @Value("${spring.queries.adminsRoles-query}")
     private String adminsRolesQuery;
 
-
-
+    //security configuration, queries are run here to get roles and check if
+    //username and passwords match input from user
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception
     {
@@ -65,7 +69,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
     }
 
-
+    //configuration of access based on different roles
+    //configuration of login, logout and access denied pages
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -73,7 +78,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/admin/consume").permitAll()
-                //.antMatchers("/push").permitAll()
                 .antMatchers("/admin/test").permitAll()
                 .antMatchers("/home/login").permitAll()
                 .antMatchers("/student/**").hasAuthority("STUDENT")

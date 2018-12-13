@@ -1,27 +1,15 @@
 package com.administration.StudentAdministration.Controllers;
 
-import com.administration.StudentAdministration.Repositories.RoleRepo;
-import com.administration.StudentAdministration.Services.CourseServices.CourseServiceImpl;
-import com.administration.StudentAdministration.Services.StudentServices.StudentServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.security.Principal;
-
+//controller used for the login, welcome and access denied pages
 @Controller
 @RequestMapping("/home")
 public class HomeController
 {
-
-    @GetMapping
-    public String homepage()
-    {
-        return "Courses/test";
-    }
-
+    //mappings for the different home pages
     @GetMapping("/login")
     public String login()
     {

@@ -1,10 +1,10 @@
 package com.administration.StudentAdministration.Models.AdminModels;
 
 import com.administration.StudentAdministration.Models.RoleModels.RoleModel;
-
 import javax.persistence.*;
 import java.util.Set;
 
+//model representing our version of an admin
 @Entity
 @Table(name = "Admins")
 public class AdminModel
@@ -19,12 +19,16 @@ public class AdminModel
     private String adminPassword;
     private int enabled;
 
+    //junction table representing relation between admins and roles
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "admins_roles", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "admins_roles", joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleModel> roles;
 
+    //empty constructor used by JPA and used when adding to a model in spring
     public AdminModel(){}
 
+    //constructor used when creating an admin in test code
     public AdminModel(String adminUsername, String adminPassword, int enabled)
     {
         this.adminUsername = adminUsername;

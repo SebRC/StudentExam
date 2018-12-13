@@ -11,9 +11,11 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+//service implementation used for database interaction having to do with courses
 @Service
 public class CourseServiceImpl implements CourseService
 {
+    //repo used for interacting with database
     @Autowired
     private CourseRepo courseRepo;
 

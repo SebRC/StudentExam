@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
-// Uses JPA library to get courses
+//repo used for database interactions having to do with courses
 @Repository
 public interface CourseRepo extends JpaRepository<CourseModel, Integer>, JpaSpecificationExecutor<CourseModel>
 {

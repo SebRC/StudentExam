@@ -1,5 +1,7 @@
 package com.administration.StudentAdministration.Services.SearchServices;
 
+//class used for searching on website
+//TODO: actually implement working search feature
 public class SearchCriteria {
 
     private Object value;

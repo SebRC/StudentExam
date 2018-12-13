@@ -2,25 +2,28 @@ package com.administration.StudentAdministration.Services.AdminServices;
 
 import com.administration.StudentAdministration.Models.AdminModels.AdminModel;
 import com.administration.StudentAdministration.Repositories.AdminRepo;
-import com.administration.StudentAdministration.Repositories.RoleRepo;
+import com.administration.StudentAdministration.Services.RoleServices.RoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 
+//service implementation used for retrieving details about admins from database
 @Service
 public class AdminServiceImpl implements AdminService
 {
+    //repositories and password encoder needed to perform functionality
     @Autowired
     private AdminRepo adminRepo;
 
     @Autowired
-    private RoleRepo roleRepo;
+    private RoleServiceImpl roleService;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    //test method for creating an admin in database
     public void createAdmin()
     {
         AdminModel adminModel = new AdminModel("test",
@@ -28,11 +31,12 @@ public class AdminServiceImpl implements AdminService
 
         adminModel.setRoles(new HashSet<>());
 
-        adminModel.getRoles().add(roleRepo.getOne(2));
+        adminModel.getRoles().add(roleService.findOne(2));
 
         adminRepo.save(adminModel);
     }
 
+    //methods for retreiving, saving and deleting an admin from database
     @Override
     public AdminModel findOne(int id)
     {

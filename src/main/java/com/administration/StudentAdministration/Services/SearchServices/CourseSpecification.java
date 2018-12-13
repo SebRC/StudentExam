@@ -7,6 +7,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.function.Predicate;
+
+//class to be used for searching on website
+//TODO: actully implement a working search function
 /*
 public class UserSpecification implements Specification<CourseModel> {
 

@@ -1,23 +1,21 @@
 package com.administration.StudentAdministration.Controllers;
 
 import com.administration.StudentAdministration.Repositories.RoleRepo;
-import com.administration.StudentAdministration.Services.CourseServices.CourseService;
 import com.administration.StudentAdministration.Services.CourseServices.CourseServiceImpl;
 import com.administration.StudentAdministration.Services.StudentServices.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.security.Principal;
 
+//controller used for directing students to different pages on the website
 @Controller
 @RequestMapping("/student")
 public class StudentController
 {
+    //services needed to get data from database
     @Autowired
     StudentServiceImpl studentService;
 
@@ -27,6 +25,7 @@ public class StudentController
     @Autowired
     RoleRepo roleRepo;
 
+    //getmapping for consuming student data from webservice
     @GetMapping("/consume")
     public String consume()
     {
@@ -35,6 +34,7 @@ public class StudentController
         return "redirect:/student/course";
     }
 
+    //students version of course page
     @GetMapping("/course")
     public String course(Model model, Principal principal)
     {

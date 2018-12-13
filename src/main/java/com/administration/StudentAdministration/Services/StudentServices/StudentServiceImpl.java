@@ -2,43 +2,31 @@ package com.administration.StudentAdministration.Services.StudentServices;
 
 import com.administration.StudentAdministration.Models.RoleModels.RoleModel;
 import com.administration.StudentAdministration.Models.StudentModels.StudentModel;
-import com.administration.StudentAdministration.Repositories.RoleRepo;
 import com.administration.StudentAdministration.Repositories.StudentRepo;
-import com.administration.StudentAdministration.Services.ActiveUserServices.ActiveUserServiceImpl;
+import com.administration.StudentAdministration.Services.RoleServices.RoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
+//service implementation used for database interaction having to do with students
 @Service
 public class StudentServiceImpl implements StudentService
 {
-
-
+    //repos for interacting with database and passwordencoder
+    @Autowired
     private StudentRepo studentRepo;
 
-    private RoleRepo roleRepo;
+    @Autowired
+    private RoleServiceImpl roleService;
 
+    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Autowired
-    private ActiveUserServiceImpl activeUserService;
-
-    @Autowired
-    public StudentServiceImpl(StudentRepo studentRepo, RoleRepo roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder)
-    {
-        this.studentRepo = studentRepo;
-        this.roleRepo = roleRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
-
-
+    //methods for interacting with database
     @Override
     public List<StudentModel> getAllStudentsFromDatabase()
     {
@@ -57,6 +45,10 @@ public class StudentServiceImpl implements StudentService
         studentRepo.save(studentModel);
     }
 
+    @Override
+    public void deleteFromDatabase(int id) { studentRepo.deleteById(id); }
+
+    //method for consuming students from webservice endpoint
     @Override
     public void consumeWebService()
     {
@@ -78,24 +70,9 @@ public class StudentServiceImpl implements StudentService
 
             studentModel.setRoles(new HashSet<RoleModel>());
 
-            studentModel.getRoles().add(roleRepo.getOne(0));
+            studentModel.getRoles().add(roleService.findOne(0));
         }
 
         studentRepo.saveAll(studentModels);
     }
-
-    @Override
-    public void updateFromWebservice()
-    {
-
-    }
-
-    @Override
-    public void deleteFromDatabase(int id)
-    {
-
-    }
-
-    //@Query("select s.username, r.role_name from students s inner join students_roles sr on(s.id=sr.id) inner join roles r on(sr.role_id=r.role_id) where username = " +  )
-    //public String getActiveUserRole();
 }

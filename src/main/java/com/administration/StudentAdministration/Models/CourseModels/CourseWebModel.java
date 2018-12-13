@@ -16,11 +16,15 @@ public class CourseWebModel implements Serializable
     private int numberOfTeachers;
     private String languange;
 
+    //empty constructor for spring purposes
     public CourseWebModel()
     {
     }
 
-    public CourseWebModel(int id, int semester, String name, String studyprogramme, String namedanish, String ects, String description, boolean mandatory, int numberOfTeachers, String languange)
+    //constructor used when retrieving data from webservice
+    public CourseWebModel(int id, int semester, String name, String studyprogramme,
+                          String namedanish, String ects, String description,
+                          boolean mandatory, int numberOfTeachers, String languange)
     {
         this.id = id;
         this.semester = semester;

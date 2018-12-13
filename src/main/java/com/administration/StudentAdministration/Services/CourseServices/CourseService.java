@@ -2,10 +2,9 @@ package com.administration.StudentAdministration.Services.CourseServices;
 
 
 import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
-
 import java.util.List;
 
-//
+//interface of service used for database interaction having to do with courses
 public interface CourseService
 {
     List<CourseModel> getAllCoursesFromDatabase();

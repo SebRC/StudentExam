@@ -1,11 +1,13 @@
 package com.administration.StudentAdministration.Models.TeacherModels;
 
+//  This is our representation of a course from the legacy system (web)
 public class TeacherWebModel
 {
     private int id;
     private String name;
     private String email;
 
+    //empty constructor for spring and JPA purposes
     public TeacherWebModel(){}
 
     public int getId()
