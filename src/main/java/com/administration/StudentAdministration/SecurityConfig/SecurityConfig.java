@@ -59,6 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/admin/consume").permitAll()
+                .antMatchers("/push").permitAll()
                 //.antMatchers("/teacher/consumeTeachers").permitAll()
                 .antMatchers("/home/login").permitAll()
                 .antMatchers("/student/consume").permitAll()
