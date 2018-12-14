@@ -19,4 +19,9 @@ public class RoleServiceImpl implements RoleService
     {
         return roleRepo.getOne(id);
     }
+
+    public RoleModel getActiveUserRole(String username)
+    {
+        return roleRepo.getRoleModelByUsername(username);
+    }
 }

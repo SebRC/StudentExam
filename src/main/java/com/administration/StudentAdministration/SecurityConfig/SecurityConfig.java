@@ -88,7 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .loginPage("/home/login")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/home/frontpage", true)
+                .defaultSuccessUrl("/home/course", true)
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/home/login").and().exceptionHandling()

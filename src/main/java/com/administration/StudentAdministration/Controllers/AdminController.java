@@ -40,9 +40,10 @@ public class AdminController
         teacherService.consumeWebService();
         courseService.consumeWebService();
 
-        return "redirect:/student/course";
+        return "redirect:/home/course";
     }
 
+    /*
     //getmapping for admin version of course page
     @GetMapping("/course")
     public String course(Model model)
@@ -53,6 +54,7 @@ public class AdminController
 
         return "Courses/course";
     }
+    */
 
     //method for creating an admin and saving it in the database
     //admins username will be set to test and password will be set to 1234
@@ -61,7 +63,7 @@ public class AdminController
     {
         adminService.createAdmin();
 
-        return "redirect:/admin/Course";
+        return "redirect:/home/Course";
     }
 
 }

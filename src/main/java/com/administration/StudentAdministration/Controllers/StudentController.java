@@ -31,9 +31,10 @@ public class StudentController
     {
         studentService.consumeWebService();
 
-        return "redirect:/student/course";
+        return "redirect:/home/course";
     }
 
+    /*
     //students version of course page
     @GetMapping("/course")
     public String course(Model model, Principal principal)
@@ -46,5 +47,6 @@ public class StudentController
 
         return "Courses/course";
     }
+    */
 
 }

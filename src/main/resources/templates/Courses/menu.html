@@ -1,13 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+</body>
+</html>
 <div class="sidenav" xmlns:th="http://www.w3.org/1999/xhtml">
+    <a href="/#"><i class="glyphicon glyphicon-user" th:text=" ${username}"></i></a>
+    <a href="/home/course"><i class="glyphicon glyphicon-home"></i> Forside</a>
     <div th:if="${role.role_name == 'TEACHER'}">
-        <a href="/teacher/create">Create Course</a>
+        <a href="/teacher/create"><i class="glyphicon glyphicon-plus"></i> Opret fag</a>
     </div>
+
 
     <div th:if="${role.role_name == 'STUDENT'}">
-        <a href="#">My Courses</a>
+        <a href="#"><i class="glyphicon glyphicon-list"></i> Mine fag</a>
 
-        <a href="#">Search Course</a>
+        <a href="#"><i class="glyphicon glyphicon-search"></i> Søg efter fag</a>
     </div>
 
-    <a href="/logout"><input class="btn btn-warning" type="submit" value="Logout"/></a>
+    <a href="/logout"><i class="glyphicon glyphicon-log-out"></i> Log ud</a>
 </div>

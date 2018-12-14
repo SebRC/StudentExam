@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 //controller used for directing teachers to different pages on the website
 @RequestMapping("/teacher")
 @Controller
@@ -30,7 +32,7 @@ public class TeacherController
     {
         courseService.consumeWebService();
 
-        return "redirect:/teacher/course";
+        return "redirect:/home/course";
     }
 
     //getmapping for updating teachers in database with data from webservice
@@ -39,9 +41,10 @@ public class TeacherController
     {
         courseService.updateFromWebservice();
 
-        return "redirect:/teacher/course";
+        return "redirect:/home/course";
     }
 
+    /*
     //  Course List Page
     @GetMapping("/course")
     public String courses(Model model)
@@ -52,17 +55,18 @@ public class TeacherController
 
         return "Courses/course";
     }
+    */
 
 
     // CRUD
     @GetMapping("/create")
-    public String createCourse(Model model)
+    public String createCourse(Model model, Principal principal)
     {
         model.addAttribute("courseModel", new CourseModel());
 
         model.addAttribute("teachers", teacherService.getAllTeachersFromDatabase());
 
-        model.addAttribute("role", roleService.findOne(1));
+        model.addAttribute("role", roleService.getActiveUserRole(principal.getName()));
 
         return "Courses/create";
     }
@@ -72,19 +76,19 @@ public class TeacherController
     {
         courseService.save(courseModel);
 
-        return "redirect:/teacher/course";
+        return "redirect:/home/course";
     }
 
 
 
     @GetMapping("/edit")
-    public String editCourse(@RequestParam ("id") int id, Model model)
+    public String editCourse(@RequestParam ("id") int id, Model model, Principal principal)
     {
         model.addAttribute("courseModel", courseService.findOne(id));
 
         model.addAttribute("teachers", teacherService.getAllTeachersFromDatabase());
 
-        model.addAttribute("role", roleService.findOne(1));
+        model.addAttribute("role", roleService.getActiveUserRole(principal.getName()));
 
         return "Courses/edit";
     }
@@ -95,15 +99,15 @@ public class TeacherController
     {
         courseService.save(courseModel);
 
-        return "redirect:/teacher/course";
+        return "redirect:/home/course";
     }
 
     @GetMapping("/delete")
-    public String deleteCourse(@RequestParam ("id") int id, Model model)
+    public String deleteCourse(@RequestParam ("id") int id, Model model, Principal principal)
     {
         model.addAttribute("courseModel", courseService.findOne(id));
 
-        model.addAttribute("role", roleService.findOne(1));
+        model.addAttribute("role", roleService.getActiveUserRole(principal.getName()));
 
 
         return "Courses/delete";
@@ -114,7 +118,7 @@ public class TeacherController
     {
         courseService.deleteFromDatabase(id);
 
-        return "redirect:/teacher/course";
+        return "redirect:/home/course";
     }
     //CRUD End
 
