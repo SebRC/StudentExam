@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 
+//TODO: edit and delete in course.html needs to be reworked
 //controller used for the login, welcome and access denied pages
 @Controller
 @RequestMapping("/home")
