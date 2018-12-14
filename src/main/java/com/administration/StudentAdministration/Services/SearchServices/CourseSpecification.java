@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.function.Predicate;
 
+//TESTTESTTETTETSTTSTTE
 //class to be used for searching on website
 //TODO: actully implement a working search function
 /*
