@@ -1,7 +1,7 @@
 package com.administration.StudentAdministration.Controllers;
 
-import com.administration.StudentAdministration.Repositories.RoleRepo;
 import com.administration.StudentAdministration.Services.CourseServices.CourseServiceImpl;
+import com.administration.StudentAdministration.Services.RoleServices.RoleServiceImpl;
 import com.administration.StudentAdministration.Services.StudentServices.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +23,7 @@ public class StudentController
     CourseServiceImpl courseService;
 
     @Autowired
-    RoleRepo roleRepo;
+    private RoleServiceImpl roleService;
 
     //getmapping for consuming student data from webservice
     @GetMapping("/consume")
@@ -41,7 +41,7 @@ public class StudentController
     {
         model.addAttribute("courses", courseService.getAllCoursesFromDatabase());
 
-        model.addAttribute("role", roleRepo.getOne(0));
+        model.addAttribute("role", roleService.findOne(0));
 
         model.addAttribute("user", principal.getName());
 
