@@ -68,6 +68,8 @@ public class TeacherController
 
         model.addAttribute("role", roleService.getActiveUserRole(principal.getName()));
 
+        model.addAttribute("username", principal.getName());
+
         return "Courses/create";
     }
 
@@ -90,6 +92,9 @@ public class TeacherController
 
         model.addAttribute("role", roleService.getActiveUserRole(principal.getName()));
 
+        model.addAttribute("username", principal.getName());
+
+
         return "Courses/edit";
     }
 
@@ -109,6 +114,7 @@ public class TeacherController
 
         model.addAttribute("role", roleService.getActiveUserRole(principal.getName()));
 
+        model.addAttribute("username", principal.getName());
 
         return "Courses/delete";
     }

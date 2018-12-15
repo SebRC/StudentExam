@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label">Semester :</label>
+                <label class="control-label">Semester</label>
                 <div class="col-sm-5">
                     <select class="form-control" th:field="${courseModel.courseSemester}">
 
@@ -123,7 +123,7 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label">Lærere :</label>
+                <label class="control-label">Lærere</label>
                 <div>
                     <select multiple class="form-control" th:field="${courseModel.teachers}">
                         <option th:each="teacherModel : ${teachers}"

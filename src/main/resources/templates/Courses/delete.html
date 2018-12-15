@@ -19,18 +19,25 @@
 <body>
 <div th:include="/Courses/menu.html"></div>
 
-  <h1 th:text="${courseModel.courseNameDanish}"></h1>
-  <h1> er du sikker på at du vil slette dette fag? </h1>
+<div class="main">
+    <h1 th:text="${courseModel.courseNameDanish}"></h1>
+    <h1>Er du sikker på at du vil slette dette fag?</h1>
 
-  <form th:action="@{/teacher/delete/} + ${courseModel.courseID}" method="post">
+    <br>
+    <form th:action="@{/teacher/delete/} + ${courseModel.courseID}" method="post">
+        <input type="hidden" th:field="${courseModel.courseID}">
+        <button type="submit" class="btn btn-danger btn-lg glyphicon glyphicon-trash"> Ja</button>
+    </form>
 
-      <input class="glyphicon glyphicon-trash" type="submit" value="Ja, slet dette fag"/>
-  </form>
+    <br>
 
-  <form action="/teacher/course" method="get">
+    <a href="/home/course">
+        <button type="button" class="glyphicon glyphicon-home btn btn-success btn-lg"> Nej</button>
+    </a>
 
-      <input class="glyphicon glyphicon-home" type="submit" value="Nej, tilbage til forsiden"/>
-  </form>
+</div>
+
+
 
 </body>
 </html>

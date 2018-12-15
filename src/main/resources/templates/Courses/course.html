@@ -74,21 +74,28 @@
                 <th scope="row" th:text="${course.courseID}"></th>
                 <td th:text="${course.courseNameDanish}"></td>
                 <td th:text="${course.courseNameEnglish}"></td>
-                <td>Lærere</td>
+                <td th:text="${course.stringOfTeachers}"></td>
                 <td th:text="${course.courseClassCode}"></td>
                 <td th:text="${course.courseSemester}"></td>
 
                 <div th:if="${role.role_name == 'STUDENT'}">
-                    <td><a><button type="button" class="btn btn-success glyphicon glyphicon-plus">Tilmeld fag</button></a></td>
+                    <td><a><button type="button" class="btn btn-success glyphicon glyphicon-plus"></button></a></td>
                 </div>
 
+               <!-- <a th:href="@{/order/list}">-->
+
+
+                <!--<a th:href="@{/order/details(id=${order.id})}">-->
+
                 <div th:if="${role.role_name == 'TEACHER'}">
-                    <td><a th:href="${'edit?id='+course.courseID}"><button type="button" class="glyphicon glyphicon-pencil btn btn-primary"></button></a></td>
-                    <td><a th:href="${'edit?id='+course.courseID}"><button type="button" class="glyphicon glyphicon-list-alt btn btn-info"></button></a></td>
-                    <td><a th:href="${'delete?id='+course.courseID}"><button type="button" class="glyphicon glyphicon-trash btn btn-danger"></button></a></td>
+                    <td><a th:href="@{/teacher/edit(id=${course.courseID})}"><button type="button" class="glyphicon glyphicon-pencil btn btn-primary"></button></a></td>
+                    <td><a th:href="@{/teacher/info(id=${course.courseID})}"><button type="button" class="glyphicon glyphicon-list-alt btn btn-info"></button></a></td>
+                    <td><a th:href="@{/teacher/delete(id=${course.courseID})}"><button type="button" class="glyphicon glyphicon-trash btn btn-danger"></button></a></td>
                 </div>
 
             </tr>
+
+
 
             </tbody>
         </table>

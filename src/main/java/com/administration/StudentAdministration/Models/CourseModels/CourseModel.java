@@ -31,6 +31,8 @@ public class CourseModel implements Serializable
     private String courseLearningActivities;
     private String courseExamForm;
     private int courseMandatory;
+    @Transient
+    private String stringOfTeachers;
 
     //junction table representing relation between courses and teachers
     @ManyToMany(fetch = FetchType.LAZY,
@@ -91,6 +93,8 @@ public class CourseModel implements Serializable
         this.courseLanguage = courseLanguage;
 
         this.courseLearningOutcome = courseLearningOutcome;
+
+        this.stringOfTeachers = teachersToString();
 
 
         //converts a boolean to an int to store in database, aka Mandatory true or false
@@ -287,5 +291,34 @@ public class CourseModel implements Serializable
     public void setTeachers(Set<TeacherModel> teachers)
     {
         this.teachers = teachers;
+    }
+
+    public String getStringOfTeachers()
+    {
+        setStringOfTeachers();
+
+        return this.stringOfTeachers;
+    }
+
+    public void setStringOfTeachers()
+    {
+        this.stringOfTeachers = teachersToString();
+    }
+
+    String teachersToString()
+    {
+        String stringOfTeachers = "";
+
+        if(this.teachers.isEmpty())
+        {
+            return stringOfTeachers;
+        }
+
+        for(TeacherModel teacherModel : this.teachers)
+        {
+            stringOfTeachers += teacherModel.getTeacherName() + ".\n";
+        }
+
+        return stringOfTeachers;
     }
 }

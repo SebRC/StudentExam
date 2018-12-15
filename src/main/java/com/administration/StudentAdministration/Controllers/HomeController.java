@@ -1,5 +1,6 @@
 package com.administration.StudentAdministration.Controllers;
 
+import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
 import com.administration.StudentAdministration.Services.CourseServices.CourseServiceImpl;
 import com.administration.StudentAdministration.Services.RoleServices.RoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 //TODO: edit and delete in course.html needs to be reworked
 //controller used for the login, welcome and access denied pages
@@ -25,10 +28,6 @@ public class HomeController
     @GetMapping("/course")
     public String course(Model model, Principal principal)
     {
-        System.out.println();
-        System.out.println(roleService.getActiveUserRole(principal.getName()).getRole_name());
-        System.out.println();
-
         model.addAttribute("courses", courseService.getAllCoursesFromDatabase());
 
         model.addAttribute("role", roleService.getActiveUserRole(principal.getName()));
@@ -41,17 +40,11 @@ public class HomeController
 
     //mappings for the different home pages
     @GetMapping("/login")
-    public String login()
-    {
-        return "Courses/login";
-    }
+    public String login() { return "Courses/login"; }
 
     @GetMapping("/frontpage")
     public String frontpage(Principal principal)
     {
-        System.out.println();
-        System.out.println(roleService.getActiveUserRole(principal.getName()).getRole_name());
-        System.out.println();
         return "Courses/frontpage";
     }
 

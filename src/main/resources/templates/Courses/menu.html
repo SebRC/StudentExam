@@ -18,7 +18,7 @@
 </body>
 </html>
 <div class="sidenav" xmlns:th="http://www.w3.org/1999/xhtml">
-    <a href="/#"><i class="glyphicon glyphicon-user" th:text=" ${username}"></i></a>
+    <a><i class="glyphicon glyphicon-user" th:text=" ${username}"></i></a>
     <a href="/home/course"><i class="glyphicon glyphicon-home"></i> Forside</a>
     <div th:if="${role.role_name == 'TEACHER'}">
         <a href="/teacher/create"><i class="glyphicon glyphicon-plus"></i> Opret fag</a>
