@@ -114,10 +114,12 @@
                </a>
         </div>
 
-        <div th:if="${number} < ${totalPages}"></div>
-        <a th:href="@{/home/page(size=${size}, page=${number})}">
-            <button type="button" class="btn btn-primary glyphicon glyphicon-circle-arrow-right">  Næste side</button>
-        </a>
+        <div th:if="${number} < ${totalPages}">
+            <a th:href="@{/home/page(size=${size}, page=${number})}">
+                <button type="button" class="btn btn-primary glyphicon glyphicon-circle-arrow-right">  Næste side</button>
+            </a>
+        </div>
+
 
     </div>
 
