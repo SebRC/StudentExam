@@ -3,7 +3,10 @@ package com.administration.StudentAdministration.Services.CourseServices;
 import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
 import com.administration.StudentAdministration.Repositories.CourseRepo;
 import com.administration.StudentAdministration.Models.CourseModels.CourseWebModel;
+import com.administration.StudentAdministration.Repositories.PageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
@@ -37,6 +40,7 @@ public class CourseServiceImpl implements CourseService
     {
         courseRepo.save(courseModel);
     }
+
 
     //  Used only once if local database is unpopulated, gets info from legacy system (web) and saves locally
     public void consumeWebService()

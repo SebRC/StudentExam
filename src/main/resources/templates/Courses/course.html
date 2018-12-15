@@ -23,6 +23,7 @@
 
 <div class="main">
     <h2>Fag</h2>
+    <div>Side: <span th:text="${number} "></span></div>
     <div th:if="${role.role_name == 'ADMIN'}">
         <h2>Du er admin</h2>
     </div>
@@ -95,11 +96,31 @@
 
             </tr>
 
-
-
             </tbody>
         </table>
+
+        <div th:if="${number} >= 2">
+            <a th:href="@{/home/page(size=${size}, page=${number - 2})}">
+                <button type="button" class="btn btn-primary glyphicon glyphicon-circle-arrow-left">  Forrige side</button>
+            </a>
+        </div>
+
+
+        <div th:if="${totalPages > 0}" class="pagination"
+             th:each="pageNumber : ${pageNumbers}">
+
+            <a th:href="@{/home/page(size=${size}, page=${pageNumber - 1})}">
+               <button type="button" class="btn btn-primary" th:text=${pageNumber}></button>
+               </a>
+        </div>
+
+        <div th:if="${number} < ${totalPages}"></div>
+        <a th:href="@{/home/page(size=${size}, page=${number})}">
+            <button type="button" class="btn btn-primary glyphicon glyphicon-circle-arrow-right">  Næste side</button>
+        </a>
+
     </div>
+
 </div>
 
 
