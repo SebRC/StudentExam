@@ -76,10 +76,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
         http.
                 authorizeRequests()
-                .antMatchers("/").permitAll()
                 .antMatchers("/admin/consume").permitAll()
                 .antMatchers("/admin/test").permitAll()
                 .antMatchers("/home/login").permitAll()
+                .antMatchers("/push").permitAll()
                 .antMatchers("/student/**").hasAuthority("STUDENT")
                 .antMatchers("/teacher/**").hasAuthority("TEACHER")
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
