@@ -1,10 +1,9 @@
 package com.administration.StudentAdministration.Models.RoleModels;
 
-import lombok.Data;
+
 import javax.persistence.*;
 
 //model representing a role
-@Data
 @Entity
 @Table(name = "roles")
 public class RoleModel {

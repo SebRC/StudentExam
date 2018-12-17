@@ -9,8 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RoleRepo extends JpaRepository<RoleModel, Integer>
 {
-    String Q_GET_ALL_USERS = "select r from roles r left join fetch u.role";
-
     @Query(value="select r.role_name, r.role_id from roles r\n" +
             " left join students_roles sr on(r.role_id=sr.role_id)\n" +
             " left join students s on(s.id=sr.id)\n" +
