@@ -53,28 +53,12 @@
             <artifactId>junit</artifactId>
         </dependency>
 
-        <!-- to solve: org.springframework.beans.factory.UnsatisfiedDependencyException
-        <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-        </dependency>
-        -->
-
         <!-- Solves old dates format, the newer MySQL doesn´t work with the timeformat, have to downgrade!-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.39</version>
         </dependency>
-
-        <!--
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.16</version>
-            <scope>provided</scope>
-        </dependency>
-        -->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

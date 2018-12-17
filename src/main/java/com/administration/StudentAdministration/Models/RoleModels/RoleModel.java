@@ -1,6 +1,5 @@
 package com.administration.StudentAdministration.Models.RoleModels;
 
-
 import javax.persistence.*;
 
 //model representing a role
