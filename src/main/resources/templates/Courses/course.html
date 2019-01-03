@@ -22,12 +22,11 @@
 
 
 <div class="main">
+
+    <input type="text" id="input" onkeyup="searchFunction()"
+           placeholder="Søg efter fag" title="Skriv et fags navn">
     <h2>Fag</h2>
     <div>Side: <span th:text="${number} "></span></div>
-    <div th:if="${role.role_name == 'ADMIN'}">
-        <h2>Du er admin</h2>
-    </div>
-
     <!--
     <div th:if="${role.role_name == 'TEACHER'}">
         <form action="/course/update" method="get">
@@ -49,7 +48,7 @@
     <br>
 
     <div class="col-md-8">
-        <table style="font-size: 15px;" class="table table-hover table-striped table-bordered">
+        <table id="courseTable" style="font-size: 15px;" class="table table-hover table-striped table-bordered">
             <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
@@ -137,5 +136,26 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<script>
+    function searchFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("courseTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 </body>
 </html>

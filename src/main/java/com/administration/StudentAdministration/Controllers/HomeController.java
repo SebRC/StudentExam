@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-//TODO: edit and delete in course.html needs to be reworked
 //controller used for the login, welcome and access denied pages
+
 @Controller
 @RequestMapping("/home")
 public class HomeController
@@ -73,13 +73,12 @@ public class HomeController
     }
 
     //mappings for the different home pages
-    @GetMapping("/login")
-    public String login() { return "Courses/login"; }
 
-    @GetMapping("/frontpage")
-    public String frontpage(Principal principal)
+
+    @GetMapping("/login")
+    public String login()
     {
-        return "Courses/frontpage";
+        return "Courses/login";
     }
 
     @GetMapping("/denied")
@@ -89,3 +88,5 @@ public class HomeController
     }
 
 }
+
+

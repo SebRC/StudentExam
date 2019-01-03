@@ -9,3 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface TeacherRepo extends JpaRepository<TeacherModel, Integer>
 {
 }
+
+
