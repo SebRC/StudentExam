@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 //model representing our version of an admin
+
 @Entity
 @Table(name = "Admins")
 public class AdminModel
