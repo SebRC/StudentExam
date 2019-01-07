@@ -1,10 +1,13 @@
 package com.administration.StudentAdministration.Controllers;
 
 import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
+import com.administration.StudentAdministration.Models.CourseModels.CourseWebModel;
+import com.administration.StudentAdministration.Services.CourseServices.CourseRestServiceImpl;
 import com.administration.StudentAdministration.Services.CourseServices.CourseServiceImpl;
 import com.administration.StudentAdministration.Services.RoleServices.RoleServiceImpl;
 import com.administration.StudentAdministration.Services.TeacherServices.TeacherServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +16,7 @@ import java.security.Principal;
 
 //controller used for directing teachers to different pages on the website
 @RequestMapping("/teacher")
-@Controller
+@Component
 public class TeacherController
 {
     //services needed to get data from database
@@ -25,6 +28,9 @@ public class TeacherController
 
     @Autowired
     private RoleServiceImpl roleService;
+
+    @Autowired
+    private CourseRestServiceImpl courseRestService;
 
     //getmapping for consuming teacher data from webservice
     @GetMapping("/consume")
@@ -44,20 +50,6 @@ public class TeacherController
         return "redirect:/home/course";
     }
 
-    /*
-    //  Course List Page
-    @GetMapping("/course")
-    public String courses(Model model)
-    {
-        model.addAttribute("courses", courseService.getAllCoursesFromDatabase());
-
-        model.addAttribute("role", roleService.findOne(1));
-
-        return "Courses/course";
-    }
-    */
-
-
     // CRUD
     @GetMapping("/create")
     public String createCourse(Model model, Principal principal)
@@ -73,13 +65,37 @@ public class TeacherController
         return "Courses/create";
     }
 
+
     @PostMapping("/create")
     public String createCourse(@ModelAttribute CourseModel courseModel)
     {
+        CourseWebModel courseWebModel = courseService.mapCourseToWebModel(courseModel);
+
+        if(courseRestService.postCourseLegacy(courseWebModel) == null)
+        {
+            return "Courses/create";
+        }
+
         courseService.save(courseModel);
 
         return "redirect:/home/course";
     }
+
+    /*@PostMapping("/create")
+    public String createCourse(@ModelAttribute CourseModel courseModel)
+    {
+        courseService.save(courseModel);
+
+        Course course = new Course(1, "Seb's test 2", "Datamatiker",
+                "ST1", "10", "This is a description",
+                true, 1, "Danish");
+
+        courseRestService.postCourseLegacy(course);
+        //courseRestService.postCourseLegacy(courseService.mapCourseToWebModel(courseModel));
+
+        return "redirect:/home/course";
+    }
+    */
 
 
 
@@ -127,7 +143,6 @@ public class TeacherController
         return "redirect:/home/course";
     }
     //CRUD End
-
 
 }
 

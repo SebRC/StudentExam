@@ -2,6 +2,8 @@ package com.administration.StudentAdministration.Models.CourseModels;
 
 import com.administration.StudentAdministration.Models.StudentModels.StudentModel;
 import com.administration.StudentAdministration.Models.TeacherModels.TeacherModel;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -10,6 +12,7 @@ import java.util.Set;
 //  This is our representation of a course in our local database
 @Entity
 @Table(name="Courses")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class CourseModel implements Serializable
 {
     @Id

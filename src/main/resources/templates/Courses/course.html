@@ -14,37 +14,58 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- custom css -->
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 <body>
 
-<div th:include="/Courses/menu.html"></div>
+<script>
+    function searchFunction()
+    {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("input");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("courseTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 
+<script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            $(".toggleth").toggle();
+            $(".toggletd").toggle();
+        });
+    });
+</script>
+
+
+<div th:include="/Courses/menu.html"></div>
 
 <div class="main">
 
-    <input type="text" id="input" onkeyup="searchFunction()"
-           placeholder="Søg efter fag" title="Skriv et fags navn">
+    <br>
+    <input class="search" type="text" id="input" onkeyup="searchFunction()"
+           placeholder="Søg" title="Skriv et fags navn">
+
+
     <h2>Fag</h2>
     <div>Side: <span th:text="${number} "></span></div>
-    <!--
-    <div th:if="${role.role_name == 'TEACHER'}">
-        <form action="/course/update" method="get">
-
-            <input class="btn btn-success" type="submit" value="Update courses"/>
-        </form>
-
-        <form action="/push" method="post">
-            <input class="btn btn-success" type="submit" value="push"/>
-        </form>
-
-        <form action="/teacher/consume" method="get">
-
-            <input class="btn btn-danger" type="submit" value="Consume"/>
-        </form>
-    </div>
-    -->
-
+    <button class="button"> Toggle informationer om fag</button>
     <br>
+
+
 
     <div class="col-md-8">
         <table id="courseTable" style="font-size: 15px;" class="table table-hover table-striped table-bordered">
@@ -52,10 +73,10 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Navn Dansk</th>
-                <th scope="col">Navn Engelsk</th>
-                <th scope="col">Lærere</th>
-                <th scope="col">Klassekode</th>
-                <th scope="col">Semester</th>
+                <th class="toggleth" scope="col">Navn Engelsk</th>
+                <th class="toggleth" scope="col">Lærere</th>
+                <th class="toggleth" scope="col">Klassekode</th>
+                <th class="toggleth" scope="col">Semester</th>
                 <div th:if="${role.role_name == 'TEACHER'}">
                     <th scope="col">Rediger</th>
                     <th scope="col">Info</th>
@@ -72,10 +93,10 @@
             <tr th:each="course : ${courses}">
                 <th scope="row" th:text="${course.courseID}"></th>
                 <td th:text="${course.courseNameDanish}"></td>
-                <td th:text="${course.courseNameEnglish}"></td>
-                <td th:text="${course.stringOfTeachers}"></td>
-                <td th:text="${course.courseClassCode}"></td>
-                <td th:text="${course.courseSemester}"></td>
+                <td class="toggletd" th:text="${course.courseNameEnglish}"></td>
+                <td class="toggletd" th:text="${course.stringOfTeachers}"></td>
+                <td class="toggletd" th:text="${course.courseClassCode}"></td>
+                <td class="toggletd" th:text="${course.courseSemester}"></td>
 
                 <div th:if="${role.role_name == 'STUDENT'}">
                     <td><a><button type="button" class="btn btn-success glyphicon glyphicon-plus"></button></a></td>
@@ -122,33 +143,6 @@
     </div>
 
 </div>
-
-<script>
-    function searchFunction()
-    {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("input");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("courseTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-</script>
-
-
-
-
-
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

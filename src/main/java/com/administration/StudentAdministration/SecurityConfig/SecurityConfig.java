@@ -69,6 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
     }
 
+
     //configuration of access based on different roles
     //configuration of login, logout and access denied pages
     @Override
@@ -80,11 +81,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .antMatchers("/admin/test").permitAll()
                 .antMatchers("/home/login").permitAll()
                 .antMatchers("/push").permitAll()
+                .antMatchers("/rest-course").permitAll()
+                .antMatchers("/home/rest").permitAll()
                 .antMatchers("/student/**").hasAuthority("STUDENT")
                 .antMatchers("/teacher/**").hasAuthority("TEACHER")
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest()
-                .authenticated().and().csrf().disable().formLogin()
+                .authenticated().and().csrf().disable()
+                .formLogin()
                 .loginPage("/home/login")
                 .usernameParameter("username")
                 .passwordParameter("password")

@@ -1,6 +1,7 @@
 package com.administration.StudentAdministration.Controllers;
 
 import com.administration.StudentAdministration.Models.CourseModels.CourseModel;
+import com.administration.StudentAdministration.Services.CourseServices.CourseRestServiceImpl;
 import com.administration.StudentAdministration.Services.CourseServices.CourseServiceImpl;
 import com.administration.StudentAdministration.Services.RoleServices.RoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -28,6 +28,9 @@ public class HomeController
 
     @Autowired
     private CourseServiceImpl courseService;
+
+    @Autowired
+    private CourseRestServiceImpl courseRestService;
 
     @GetMapping("/course")
     public String coursePage(@PageableDefault(value=10, page=0) Pageable pageable,
@@ -66,15 +69,15 @@ public class HomeController
         model.addAttribute("courses", page.getContent());
 
         //regular attributes
+
         model.addAttribute("role", roleService.getActiveUserRole(principal.getName()));
+
         model.addAttribute("username", principal.getName());
 
         return "Courses/course";
     }
 
     //mappings for the different home pages
-
-
     @GetMapping("/login")
     public String login()
     {
@@ -87,6 +90,13 @@ public class HomeController
         return "Courses/denied";
     }
 
+    @GetMapping("/rest")
+    public String consumeOwnREST()
+    {
+        courseService.consumeOwnREST();
+
+        return "Courses/test";
+    }
 }
 
 

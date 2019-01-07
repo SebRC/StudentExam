@@ -12,8 +12,46 @@
     <!-- custom css -->
     <link rel="stylesheet" href="../css/style.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 <body>
+
+
+<script>
+    $(document).ready(function () {
+        $("#courseForm").validate({
+            rules: {
+                nameDanish: {
+                    required: true,
+                    letterswithbasicpunc: true
+                },
+                nameEnglish: {
+                    required: true,
+                    letterswithbasicpunc: true
+                },
+                programme: {
+                    required: true,
+                    letterswithbasicpunc: true
+                },
+                ects: {
+                    required: true,
+                    integer: true
+                },
+                languange: {
+                    required: true,
+                    letterswithbasicpunc: true
+                },
+                description: {
+                    required: true,
+                    letterswithbasicpunc: true,
+                    minlength: 10
+                }
+            }
+        })
+
+    })
+</script>
 
 <div th:include="/Courses/menu.html"></div>
 
@@ -22,17 +60,17 @@
     <h2>Opret Fag</h2>
 
     <div class="col-md-4">
-        <form th:action="@{/teacher/create}" method="post">
+        <form id="courseForm" th:action="@{/teacher/create}" method="post">
             <input type="hidden" th:field="${courseModel.courseID}">
 
             <div class="form-group">
                 <label>Navn Dansk</label>
-                <input type="text" class="form-control" th:field="${courseModel.courseNameDanish}">
+                <input name="nameDanish" type="text" class="form-control" th:field="${courseModel.courseNameDanish}">
             </div>
 
             <div class="form-group">
                 <label>Navn Engelsk</label>
-                <input type="text" class="form-control" th:field="${courseModel.courseNameEnglish}">
+                <input name="nameEnglish" type="text" class="form-control" th:field="${courseModel.courseNameEnglish}">
             </div>
 
             <div class="form-group">
@@ -56,17 +94,17 @@
 
             <div class="form-group">
                 <label>Studieretning</label>
-                <input type="text" class="form-control" th:field="${courseModel.courseStudyProgramme}">
+                <input name="programme" type="text" class="form-control" th:field="${courseModel.courseStudyProgramme}">
             </div>
 
             <div class="form-group">
                 <label>ECTS</label>
-                <input type="text" class="form-control" th:field="${courseModel.courseECTS}">
+                <input name="ects" type="text" class="form-control" th:field="${courseModel.courseECTS}">
             </div>
 
             <div class="form-group">
                 <label>Sprog</label>
-                <input type="text" class="form-control" th:field="${courseModel.courseLanguage}">
+                <input name="language" type="text" class="form-control" th:field="${courseModel.courseLanguage}">
             </div>
 
             <div class="form-group">
@@ -91,7 +129,7 @@
 
             <div class="form-group">
                 <label>Læringsudbytte</label>
-                <textarea class="form-control" rows="5" th:field="${courseModel.courseLearningOutcome}"></textarea>
+                <textarea name="description" class="form-control" rows="5" th:field="${courseModel.courseLearningOutcome}"></textarea>
             </div>
 
             <div class="form-group">

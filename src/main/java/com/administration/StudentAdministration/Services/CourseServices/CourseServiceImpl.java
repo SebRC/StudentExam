@@ -62,10 +62,10 @@ public class CourseServiceImpl implements CourseService
         //  converts legacy courses to our model
         for (CourseWebModel courseWebModel : courseWebModelsArray)
         {
-            CourseModel courseModel = new CourseModel(courseWebModel.getId(), courseWebModel.getNamedanish(), courseWebModel.getName(),
-                    courseWebModel.getSemester(), courseWebModel.getStudyprogramme(),
-                    courseWebModel.getEcts(), courseWebModel.getLanguange(), courseWebModel.getDescription(), courseWebModel.isMandatory());
-
+            CourseModel courseModel = new CourseModel(courseWebModel.getId(), courseWebModel.getNamedanish(),
+                    courseWebModel.getName(), courseWebModel.getSemester(), courseWebModel.getStudyprogramme(),
+                    courseWebModel.getEcts(), courseWebModel.getLanguange(), courseWebModel.getDescription(),
+                    courseWebModel.isMandatory());
 
             localCoursesList.add(courseModel);
         }
@@ -73,6 +73,7 @@ public class CourseServiceImpl implements CourseService
         //  saves the converted models in local database
         courseRepo.saveAll(localCoursesList);
     }
+
 
     //  uses an iterator to go through the attributes of our models from local database, and overwrites values to the updated values from legacy system
 
@@ -123,9 +124,50 @@ public class CourseServiceImpl implements CourseService
         courseRepo.saveAll(localCoursesList);
     }
 
+    //method for consuming own REST endpoint
+    //just to show of some REST functionality
+    //changes name of course to showcase and saves in database
+    //to showcase same object is now changed
+    public void consumeOwnREST()
+    {
+        String devURL = "http://localhost:8080/rest-course";
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        CourseModel courseModel = restTemplate.getForObject(devURL, CourseModel.class);
+
+        courseModel.setCourseNameDanish("Seb's REST test");
+
+        courseRepo.save(courseModel);
+    }
+
+
     //  deletes specific course
     public void deleteFromDatabase(int id)
     {
         courseRepo.deleteById(id);
     }
+
+
+    //used to map a local coursemodel to a webservive coursemodel
+    public CourseWebModel mapCourseToWebModel(CourseModel courseModel)
+    {
+        boolean isMandatory = false;
+        if(courseModel.getCourseMandatory() == 1)
+        {
+            isMandatory = true;
+        }
+
+        CourseWebModel course = new CourseWebModel(courseModel.getCourseSemester(),
+                courseModel.getCourseNameEnglish(),
+                courseModel.getCourseStudyProgramme(), courseModel.getCourseNameDanish(),
+                courseModel.getCourseECTS(), courseModel.getCourseLearningOutcome(),
+                isMandatory, 1, courseModel.getCourseLanguage());
+
+        return course;
+    }
+
+
+
+
 }

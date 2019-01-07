@@ -22,11 +22,10 @@ public class CourseWebModel implements Serializable
     }
 
     //constructor used when retrieving data from webservice
-    public CourseWebModel(int id, int semester, String name, String studyprogramme,
+    public CourseWebModel(int semester, String name, String studyprogramme,
                           String namedanish, String ects, String description,
                           boolean mandatory, int numberOfTeachers, String languange)
     {
-        this.id = id;
         this.semester = semester;
         this.name = name;
         this.studyprogramme = studyprogramme;
